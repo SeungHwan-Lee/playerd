@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target:'http://localhost:3000/api',
+        target: 'http://localhost:3000/api',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -80,5 +80,17 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
   }
 }

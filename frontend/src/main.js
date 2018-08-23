@@ -5,9 +5,18 @@ import App from './App'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import BootstrapVue from 'bootstrap-vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTable, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faTable, faPlus)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+
+Vue.use(BootstrapVue)
 
 // eventBus
 export const eventBus = new Vue()

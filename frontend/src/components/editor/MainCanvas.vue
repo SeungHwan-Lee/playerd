@@ -3,9 +3,9 @@
     <div v-for="table in tables" :key="table.id">
       <div>
         <input type="text" v-model="table.name"/>
-        <button class="menuBar_btn" @click="addColumn(table.id)">
-          <i class="fas fa-plus"></i>
-        </button>
+        <b-button @click="addColumn(table.id)">
+          <font-awesome-icon icon="plus" />
+        </b-button>
       </div>
       <div v-for="column in table.columns" :key="column.id">
         <input type="text" placeholder="column" v-model="column.name"/>
@@ -67,15 +67,5 @@
 </script>
 
 <style scoped>
-  .menuBar_btn{
-    height: 100%;
-    width: 32px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #f6f6f6;
-    cursor: pointer;
-    box-sizing: border-box;
-    color: #000;
-    cursor:pointer;
-  }
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <TopMenu></TopMenu>
-    <MainCanvas></MainCanvas>
+    <top-menu />
+    <main-canvas />
   </div>
 </template>
 
