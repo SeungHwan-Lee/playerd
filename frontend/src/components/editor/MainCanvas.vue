@@ -1,18 +1,38 @@
 <template>
   <div>
-    <div v-for="table in tables" :key="table.id">
-      <div>
-        <input type="text" v-model="table.name"/>
-        <b-button @click="addColumn(table.id)">
-          <font-awesome-icon icon="plus" />
-        </b-button>
+    <div class="table" v-for="table in tables" :key="table.id" v-drag>
+      <div class="tableHeader">
+        <b-container>
+          <b-row>
+            <b-col sm="11">
+              <input type="text" v-model="table.name"/>
+            </b-col>
+            <b-col sm="1">
+              <b-button @click="addColumn(table.id)">
+                <font-awesome-icon icon="plus" />
+              </b-button>
+            </b-col>
+          </b-row>
+        </b-container>
       </div>
       <div v-for="column in table.columns" :key="column.id">
-        <input type="text" placeholder="column" v-model="column.name"/>
-        <input type="text" placeholder="dataType" v-model="column.dataType"/>
-        <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-if="column.notNull"/>
-        <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-else/>
-        <input type="text" placeholder="comment" v-model="column.comment"/>
+        <b-container>
+          <b-row>
+            <b-col sm="3">
+              <input type="text" placeholder="column" v-model="column.name"/>
+            </b-col>
+            <b-col sm="3">
+              <input type="text" placeholder="dataType" v-model="column.dataType"/>
+            </b-col>
+            <b-col sm="3">
+              <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-if="column.notNull"/>
+              <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-else/>
+            </b-col>
+            <b-col sm="3">
+              <input type="text" placeholder="comment" v-model="column.comment"/>
+            </b-col>
+          </b-row>
+        </b-container>
       </div>
     </div>
   </div>
@@ -20,9 +40,13 @@
 
 <script>
   import storeERD from '../../store/erd'
+  import drag from '../../utils/drag'
 
   export default {
     name: 'MainCanvas',
+    directives: {
+      drag
+    },
     computed: {
       tables () {
         return storeERD.state.tables
@@ -30,7 +54,7 @@
     },
     methods: {
       // 컬럼 추가
-      addColumn: function(id) {
+      addColumn (id) {
         JSLog('MainCanvas', 'addColumn', id);
         storeERD.commit({
           type: 'addColumn',
@@ -38,13 +62,13 @@
         })
       },
       // NULL 조건 변경
-      changeNull: function(tableId, columnId) {
+      changeNull (tableId, columnId) {
         let table = this.getTable(tableId)
         let column = this.getColumn(table, columnId)
         column.notNull = !column.notNull
       },
       // id -> table 반환
-      getTable: function(id) {
+      getTable (id) {
         let len = this.tables.length
         for(let i=0; i<len; i++) {
           if(id === this.tables[i].id) {
@@ -53,7 +77,7 @@
         }
       },
       // id -> column 반환
-      getColumn: function(table, id) {
+      getColumn (table, id) {
         let len = table.columns.length
         for(let i=0; i<len; i++) {
           if(id === table.columns[i].id) {
@@ -66,6 +90,21 @@
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .table {
+    position: absolute;
+    box-sizing: border-box;
+    background-color: #00B7FF;
+    width: 600px;
+    margin: 20px auto 15px auto;
+  }
+  .tableHeader {
+    box-sizing: border-box;
+    background-color: #42b983;
+    width: 635px;
+    input {
+      width: 100%;
+      height: 100%;
+    }
+  }
 </style>

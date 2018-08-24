@@ -19,11 +19,9 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
   body {
     background-color: #F1F3F5;
-    -ms-overflow-style: none; /* IE 10+ */
-    overflow: -moz-scrollbars-none; /* Firefox */
     font-family: 'Noto Sans', sans-serif;
     line-height: 1;
 

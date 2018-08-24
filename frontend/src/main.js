@@ -10,17 +10,26 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTable, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faTable, faPlus)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
 Vue.use(BootstrapVue)
+library.add(faTable, faPlus)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // eventBus
 export const eventBus = new Vue()
-// import { eventBus } from '../../main'
+
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  components: {App},
+  template: '<App/>'
+})
+
 
 /**
  * 전역 로그
@@ -56,12 +65,3 @@ window.JSLog = function (option, obj) {
     if (window.console) console.log('JSLog: ' + args.join(' | '))
   }
 }
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {App},
-  template: '<App/>'
-})
