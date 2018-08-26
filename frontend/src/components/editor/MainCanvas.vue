@@ -63,27 +63,11 @@
       },
       // NULL 조건 변경
       changeNull (tableId, columnId) {
-        let table = this.getTable(tableId)
-        let column = this.getColumn(table, columnId)
-        column.notNull = !column.notNull
-      },
-      // id -> table 반환
-      getTable (id) {
-        let len = this.tables.length
-        for(let i=0; i<len; i++) {
-          if(id === this.tables[i].id) {
-            return this.tables[i]
-          }
-        }
-      },
-      // id -> column 반환
-      getColumn (table, id) {
-        let len = table.columns.length
-        for(let i=0; i<len; i++) {
-          if(id === table.columns[i].id) {
-            return table.columns[i]
-          }
-        }
+        storeERD.commit({
+          type: 'changeNotNull',
+          tableId: tableId,
+          columnId: columnId
+        })
       }
     }
   }

@@ -11,6 +11,25 @@ function guid() {
   return [s4(),s4(),'-',s4(),'-',s4(),'-',s4(),'-',s4(),s4(),s4()].join('')
 }
 
+// id -> table 반환
+function getTable(id) {
+  let len = this.tables.length
+  for(let i=0; i<len; i++) {
+    if(id === this.tables[i].id) {
+      return this.tables[i]
+    }
+  }
+}
+// id -> column 반환
+function getColumn(table, id) {
+  let len = table.columns.length
+  for(let i=0; i<len; i++) {
+    if(id === table.columns[i].id) {
+      return table.columns[i]
+    }
+  }
+}
+
 // ERD 데이터
 export default new Vuex.Store({
   state: {
@@ -43,6 +62,11 @@ export default new Vuex.Store({
           break
         }
       }
+    },
+    changeNotNull (state, data) {
+      let table = getTable(data.datatableId)
+      let column = getColumn(table, data.columnId)
+      column.notNull = !column.notNull
     }
   }
 })
