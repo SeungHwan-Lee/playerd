@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="049279ba-2bd4-4851-977a-dc3a9049e449" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/css/app.cca059254702f9ed953b7df749673cf4.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/css/app.cca059254702f9ed953b7df749673cf4.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/js/app.20ece694d5b738e2ceee.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/js/app.20ece694d5b738e2ceee.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/backend/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/js/vendor.3fae27b6d0a0572472a3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/public/static/js/vendor.3fae27b6d0a0572472a3.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/store/erd.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/erd.js" afterDir="false" />
     </list>
@@ -111,19 +100,19 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="34" />
-          <entry key="js" value="2777" />
+          <entry key="js" value="3010" />
           <entry key="json" value="2" />
           <entry key="ts" value="13" />
-          <entry key="vue" value="4871" />
+          <entry key="vue" value="4883" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="34" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="2777" />
+          <entry key="JavaScript" value="3010" />
           <entry key="TypeScript" value="13" />
-          <entry key="Vue.js" value="4871" />
+          <entry key="Vue.js" value="4883" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -164,8 +153,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="303">
-                  <caret line="65" selection-start-line="65" selection-end-line="65" />
+                <state relative-caret-position="345">
+                  <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
                   <folding>
                     <element signature="e#1360#1398#0" expanded="true" />
                   </folding>
@@ -192,8 +181,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/frontend/src/store/erd.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="506">
-                  <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+                <state relative-caret-position="310">
+                  <caret line="57" column="14" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#21#0" expanded="true" />
                   </folding>
@@ -274,7 +263,7 @@
       <path value="$PROJECT_DIR$/frontend/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-17" />
     <option name="y" value="438" />
     <option name="width" value="1936" />
@@ -378,12 +367,12 @@
       <workItem from="1535267051129" duration="679000" />
       <workItem from="1535289220645" duration="59000" />
       <workItem from="1535306709522" duration="1316000" />
-      <workItem from="1535308200291" duration="510000" />
+      <workItem from="1535308200291" duration="1593000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74405000" />
+    <option name="totallyTimeSpent" value="75488000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -404,7 +393,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296582" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33076075" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33076075" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -412,7 +401,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24696803" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.24696803" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -628,8 +617,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/store/erd.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+        <state relative-caret-position="310">
+          <caret line="57" column="14" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="14" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
@@ -638,8 +627,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="345">
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
           <folding>
             <element signature="e#1360#1398#0" expanded="true" />
           </folding>

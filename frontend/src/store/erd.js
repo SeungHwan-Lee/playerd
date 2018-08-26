@@ -11,21 +11,12 @@ function guid() {
   return [s4(),s4(),'-',s4(),'-',s4(),'-',s4(),'-',s4(),s4(),s4()].join('')
 }
 
-// id -> table 반환
-function getTable(id) {
-  let len = this.tables.length
+// id -> data 반환
+function getData(list, id) {
+  let len = list.length
   for(let i=0; i<len; i++) {
-    if(id === this.tables[i].id) {
-      return this.tables[i]
-    }
-  }
-}
-// id -> column 반환
-function getColumn(table, id) {
-  let len = table.columns.length
-  for(let i=0; i<len; i++) {
-    if(id === table.columns[i].id) {
-      return table.columns[i]
+    if(id === list[i].id) {
+      return list[i]
     }
   }
 }
@@ -57,16 +48,17 @@ export default new Vuex.Store({
             name: null,
             comment: null,
             dataType: null,
-            notNull: false
+            isNull: true
           })
           break
         }
       }
     },
-    changeNotNull (state, data) {
-      let table = getTable(data.datatableId)
-      let column = getColumn(table, data.columnId)
-      column.notNull = !column.notNull
+    // NULL 조건 변경
+    changeNull (state, data) {
+      let table = getData(state.tables, data.tableId)
+      let column = getData(table.columns, data.columnId)
+      column.isNull = !column.isNull
     }
   }
 })

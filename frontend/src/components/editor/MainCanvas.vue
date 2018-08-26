@@ -25,8 +25,8 @@
               <input type="text" placeholder="dataType" v-model="column.dataType"/>
             </b-col>
             <b-col sm="3">
-              <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-if="column.notNull"/>
-              <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-else/>
+              <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
+              <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else/>
             </b-col>
             <b-col sm="3">
               <input type="text" placeholder="comment" v-model="column.comment"/>
@@ -64,7 +64,7 @@
       // NULL 조건 변경
       changeNull (tableId, columnId) {
         storeERD.commit({
-          type: 'changeNotNull',
+          type: 'changeNull',
           tableId: tableId,
           columnId: columnId
         })
