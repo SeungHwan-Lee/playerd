@@ -80,7 +80,6 @@
     box-sizing: border-box;
     background-color: #00B7FF;
     width: 600px;
-    margin: 20px auto 15px auto;
   }
   .tableHeader {
     box-sizing: border-box;

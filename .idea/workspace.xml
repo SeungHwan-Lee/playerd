@@ -4,7 +4,6 @@
     <list default="true" id="049279ba-2bd4-4851-977a-dc3a9049e449" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/erd.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/erd.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,23 +64,23 @@
     <session id="519835183">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="3" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.1" value="4" />
+          <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="1" />
           <entry key="html" value="7" />
-          <entry key="js" value="59" />
+          <entry key="js" value="61" />
           <entry key="json" value="10" />
           <entry key="ts" value="2" />
           <entry key="vue" value="41" />
@@ -92,7 +91,7 @@
           <entry key="CSS" value="1" />
           <entry key="HTML" value="7" />
           <entry key="JSON" value="10" />
-          <entry key="JavaScript" value="59" />
+          <entry key="JavaScript" value="61" />
           <entry key="TypeScript" value="2" />
           <entry key="Vue.js" value="41" />
         </counts>
@@ -100,19 +99,19 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="34" />
-          <entry key="js" value="3010" />
+          <entry key="js" value="3054" />
           <entry key="json" value="2" />
           <entry key="ts" value="13" />
-          <entry key="vue" value="4883" />
+          <entry key="vue" value="4890" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="34" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="3010" />
+          <entry key="JavaScript" value="3054" />
           <entry key="TypeScript" value="13" />
-          <entry key="Vue.js" value="4883" />
+          <entry key="Vue.js" value="4890" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -123,14 +122,14 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.4294593">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/ERD.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+                <state relative-caret-position="230">
+                  <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
                   <folding>
                     <element signature="e#89#120#0" expanded="true" />
                   </folding>
@@ -141,8 +140,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/frontend/src/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="483">
-                  <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+                <state relative-caret-position="299">
+                  <caret line="22" selection-start-line="22" selection-end-line="22" />
                   <folding>
                     <element signature="e#140#161#0" expanded="true" />
                   </folding>
@@ -153,23 +152,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#1360#1398#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/frontend/src/router/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="368">
-                  <caret line="16" selection-start-line="16" selection-end-line="16" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="193">
+                  <caret line="81" column="17" lean-forward="true" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -177,15 +161,24 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/frontend/src/store/erd.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="310">
-                  <caret line="57" column="14" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="14" />
+                <state relative-caret-position="914">
+                  <caret line="64" selection-start-line="64" selection-end-line="64" />
                   <folding>
                     <element signature="e#0#21#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/frontend/src/utils/drag.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="105" selection-start-line="105" selection-end-line="105" />
                 </state>
               </provider>
             </entry>
@@ -212,6 +205,7 @@
       <find>mousedown</find>
       <find>mouseup</find>
       <find>overlay</find>
+      <find>setDraggerOffset</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -240,9 +234,9 @@
         <option value="$PROJECT_DIR$/frontend/src/App.vue" />
         <option value="$PROJECT_DIR$/frontend/package.json" />
         <option value="$PROJECT_DIR$/frontend/src/main.js" />
-        <option value="$PROJECT_DIR$/frontend/src/utils/drag.js" />
         <option value="$PROJECT_DIR$/backend/public/index.html" />
         <option value="$PROJECT_DIR$/frontend/src/store/erd.js" />
+        <option value="$PROJECT_DIR$/frontend/src/utils/drag.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue" />
       </list>
     </option>
@@ -264,8 +258,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-17" />
-    <option name="y" value="438" />
+    <option name="x" value="81" />
+    <option name="y" value="319" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
   </component>
@@ -281,6 +275,24 @@
               <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
               <item name="playerd" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="playerd" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="playerd" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="playerd" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -290,7 +302,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/workspace/workspace-WebStorm/test" />
+    <property name="last_opened_file_path" value="D:/workspace/workspace-WebStorm/nuxt_sample" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -367,12 +379,15 @@
       <workItem from="1535267051129" duration="679000" />
       <workItem from="1535289220645" duration="59000" />
       <workItem from="1535306709522" duration="1316000" />
-      <workItem from="1535308200291" duration="1593000" />
+      <workItem from="1535308200291" duration="2529000" />
+      <workItem from="1535354217387" duration="41000" />
+      <workItem from="1535357869997" duration="47000" />
+      <workItem from="1535357988236" duration="678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75488000" />
+    <option name="totallyTimeSpent" value="77190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -384,7 +399,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15226555" />
@@ -393,7 +408,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296582" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33076075" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33008763" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -557,13 +572,6 @@
     <entry file="file://$PROJECT_DIR$/frontend/node_modules/@branu-jp/v-drag/lib/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/utils/drag.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="9" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/TopMenu.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="754">
@@ -589,49 +597,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#140#161#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/ERD.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="230">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
           <folding>
             <element signature="e#89#120#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#140#161#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/store/erd.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="57" column="14" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="14" />
+        <state relative-caret-position="914">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/utils/drag.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="105" selection-start-line="105" selection-end-line="105" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/MainCanvas.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
-          <folding>
-            <element signature="e#1360#1398#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="193">
+          <caret line="81" column="17" lean-forward="true" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
         </state>
       </provider>
     </entry>
