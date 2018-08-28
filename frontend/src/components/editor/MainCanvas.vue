@@ -22,7 +22,7 @@
               <input type="text" placeholder="column" v-model="column.name"/>
             </b-col>
             <b-col sm="3">
-              <input type="text" placeholder="dataType" v-model="column.dataType"/>
+              <data-type v-bind:tableId="table.id" v-bind:columnId="column.id"></data-type>
             </b-col>
             <b-col sm="3">
               <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
@@ -41,9 +41,13 @@
 <script>
   import storeERD from '../../store/erd'
   import drag from '../../utils/drag'
+  import DataType from './DataType'
 
   export default {
     name: 'MainCanvas',
+    components: {
+      DataType
+    },
     directives: {
       drag
     },
@@ -78,13 +82,13 @@
   .table {
     position: absolute;
     box-sizing: border-box;
-    background-color: #00B7FF;
-    width: 600px;
+    background-color: #42b983;
+    width: 688px;
   }
   .tableHeader {
     box-sizing: border-box;
     background-color: #42b983;
-    width: 635px;
+    width: 703px;
     input {
       width: 100%;
       height: 100%;

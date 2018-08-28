@@ -9,9 +9,11 @@ import BootstrapVue from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTable, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import jquery from 'jquery'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+Vue.prototype.jquery = jquery
 
 Vue.use(BootstrapVue)
 library.add(faTable, faPlus)

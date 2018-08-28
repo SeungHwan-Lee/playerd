@@ -1,29 +1,21 @@
 import Vue from "vue"
 import Vuex from 'vuex'
+import { guid, getData } from '../utils/common'
+import { mysql5_7 } from "./dataType"
 
 Vue.use(Vuex)
-
-// UUID 생성
-function guid() {
-  function s4() {
-    return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1)
-  }
-  return [s4(),s4(),'-',s4(),'-',s4(),'-',s4(),'-',s4(),s4(),s4()].join('')
-}
-
-// id -> data 반환
-function getData(list, id) {
-  let len = list.length
-  for(let i=0; i<len; i++) {
-    if(id === list[i].id) {
-      return list[i]
-    }
-  }
-}
 
 // ERD 데이터
 export default new Vuex.Store({
   state: {
+    DBType: 'mysql5.7',
+    DBTypes: [
+      {
+        value: 'mysql5.7',
+        text: 'MySQL 5.7',
+        dataTypes: mysql5_7.dataTypes
+      }
+    ],
     tables: []
   },
   mutations: {
@@ -59,6 +51,15 @@ export default new Vuex.Store({
       let table = getData(state.tables, data.tableId)
       let column = getData(table.columns, data.columnId)
       column.isNull = !column.isNull
+    },
+    changeDataType (state, data) {
+      let table = getData(state.tables, data.tableId)
+      let column = getData(table.columns, data.columnId)
+      column.dataType = data.dataType
+    },
+    // DB 변경
+    changeDB (state, data) {
+      state.DBType = data.DBType
     }
   }
 })

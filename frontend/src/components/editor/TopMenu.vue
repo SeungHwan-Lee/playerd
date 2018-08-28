@@ -1,22 +1,56 @@
 <template>
-    <div class="menuBar">
-      <b-button @click="addTable">
-        <font-awesome-icon icon="table" />
-      </b-button>
-    </div>
+  <div class="menuBar">
+    <b-button @click="addTable">
+      <font-awesome-icon icon="table"/>
+    </b-button>
+    <basic-select :options="options"
+                  :selected-option="item"
+                  placeholder="DB type"
+                  @select="onSelect">
+    </basic-select>
+    <!--<b-form-select v-model="selected" :options="options"/>-->
+  </div>
 </template>
 
 <script>
   import storeERD from '../../store/erd'
+  import { BasicSelect } from 'vue-search-select'
 
   export default {
-      name: 'TopMenu',
-      methods: {
-        // 테이블 추가
-        addTable: function() {
-          storeERD.commit({type: 'addTable'})
+    name: 'TopMenu',
+    components: {
+      BasicSelect
+    },
+    data () {
+      return {
+        item: {
+          value: 'mysql5.7',
+          text: 'MySQL 5.7'
         }
       }
+    },
+    computed: {
+      options () {
+        return storeERD.state.DBTypes
+      }
+    },
+    methods: {
+      // 테이블 추가
+      addTable: function () {
+        storeERD.commit({type: 'addTable'})
+      },
+      onSelect (item) {
+        this.item = item
+      }
+    },
+    watch: {
+      item (val, oldVal) {
+        storeERD.commit({
+          type: 'changeDB',
+          DBType: val.value
+        })
+      }
+    }
   }
 </script>
 
@@ -34,5 +68,8 @@
     margin: 0 auto;
     box-shadow: 0px 1px 6px #bcbcbc;
     z-index: 100;
+  }
+  .ui.fluid.dropdown {
+    width: 20%;
   }
 </style>
