@@ -52,6 +52,7 @@ export default new Vuex.Store({
       let column = getData(table.columns, data.columnId)
       column.isNull = !column.isNull
     },
+    // 데이터타입 변경
     changeDataType (state, data) {
       let table = getData(state.tables, data.tableId)
       let column = getData(table.columns, data.columnId)

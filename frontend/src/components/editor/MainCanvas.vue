@@ -22,7 +22,7 @@
               <input type="text" placeholder="column" v-model="column.name"/>
             </b-col>
             <b-col sm="3">
-              <data-type v-bind:tableId="table.id" v-bind:columnId="column.id"></data-type>
+              <data-type :tableId="table.id" :columnId="column.id"></data-type>
             </b-col>
             <b-col sm="3">
               <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>

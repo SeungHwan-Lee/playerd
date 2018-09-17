@@ -40,17 +40,17 @@ new Vue({
  * @constructor
  */
 window.JSLog = function (option, obj) {
-  if (option == 'to') {
-    var log = ''
-    var objs = []
-    var i = 0
-    for (var prop in obj) {
-      if(i != 0) {
+  if (option === 'to') {
+    let log = ''
+    let objs = []
+    let i = 0
+    for (let prop in obj) {
+      if(i !== 0) {
         log += 'JSLog: '
       }
       i++
       log += prop+' : '+obj[prop] + '\n'
-      if(typeof(obj[prop]) == 'object') {
+      if(typeof(obj[prop]) === 'object') {
         objs.push({
           name: prop,
           o: obj[prop]
@@ -63,7 +63,7 @@ window.JSLog = function (option, obj) {
       JSLog('to', v.o)
     })
   } else {
-    var args = Array.prototype.slice.call(arguments)
+    let args = Array.prototype.slice.call(arguments)
     if (window.console) console.log('JSLog: ' + args.join(' | '))
   }
 }

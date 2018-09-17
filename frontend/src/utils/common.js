@@ -45,7 +45,7 @@ export const getOptionSearch = function (key) {
   let check = true
   for(let i=0; i<options.length; i++) {
     check = true
-    if(options[i].text.toLowerCase().indexOf(key.toLowerCase()) != -1) {
+    if(options[i].text.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
       check = false
     }
     if(check) {
