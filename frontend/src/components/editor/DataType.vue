@@ -33,17 +33,17 @@
     mounted () {
       // 데이터타입 힌트 hide
       this.dataTypeHintVisible('hide')
-      this.jquery(this.$el).find('select').mouseleave(function(){
+      $(this.$el).find('select').mouseleave(function(){
         this.dataTypeHintVisible('hide')
       }.bind(this))
-      this.jquery(this.$el).find('select').mouseenter(function(){
+      $(this.$el).find('select').mouseenter(function(){
         this.hintCheck = false
       }.bind(this))
       // 데이터타입 힌트 show
-      this.jquery(this.$el).find('select').keyup(function(e){
+      $(this.$el).find('select').keyup(function(e){
         if(e.keyCode === 13) {
           this.hintCheck = true
-          this.jquery(this.$el).find('input').focus()
+          $(this.$el).find('input').focus()
         }
       }.bind(this))
     },
@@ -81,7 +81,7 @@
       dataTypeHintVisible (type) {
         JSLog('dataTypeHintVisible', type)
         if(type === 'show') this.hintCheck = true
-        this.jquery(this.$el).find('select')[type]()
+        $(this.$el).find('select')[type]()
       },
       // 데이터타입 힌트 hide 타임셋
       dataTypeHintHide () {
@@ -97,8 +97,8 @@
         if(e.key === 'ArrowDown') {
           this.searchCheck = false
           this.hintCheck = false
-          this.jquery(this.$el).find('select').focus()
-          this.jquery(this.$el).find('select > option').eq(0).prop('selected', true)
+          $(this.$el).find('select').focus()
+          $(this.$el).find('select > option').eq(0).prop('selected', true)
         }else {
           this.searchCheck = true
         }

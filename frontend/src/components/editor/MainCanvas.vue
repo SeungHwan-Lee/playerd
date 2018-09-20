@@ -1,15 +1,21 @@
 <template>
   <div>
-    <div class="table" v-for="table in tables" :key="table.id" v-drag>
-      <div class="tableHeader">
+    <div class="erd_table" v-for="table in tables" :key="table.id">
+      <div class="erd_table_top"></div>
+      <div class="erd_table_header">
         <b-container>
           <b-row>
-            <b-col sm="11">
-              <input type="text" v-model="table.name"/>
+            <b-col cols="10">
+              <input type="text" placeholder="table" v-model="table.name"/>
             </b-col>
-            <b-col sm="1">
-              <b-button @click="addColumn(table.id)">
+            <b-col cols="1">
+              <b-button @click.prevent="addColumn(table.id)">
                 <font-awesome-icon icon="plus" />
+              </b-button>
+            </b-col>
+            <b-col cols="1">
+              <b-button>
+                <font-awesome-icon icon="times" />
               </b-button>
             </b-col>
           </b-row>
@@ -18,17 +24,17 @@
       <div v-for="column in table.columns" :key="column.id">
         <b-container>
           <b-row>
-            <b-col sm="3">
+            <b-col cols="3">
               <input type="text" placeholder="column" v-model="column.name"/>
             </b-col>
-            <b-col sm="3">
+            <b-col cols="3">
               <data-type :tableId="table.id" :columnId="column.id"></data-type>
             </b-col>
-            <b-col sm="3">
+            <b-col cols="3">
               <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
               <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else/>
             </b-col>
-            <b-col sm="3">
+            <b-col cols="3">
               <input type="text" placeholder="comment" v-model="column.comment"/>
             </b-col>
           </b-row>
@@ -51,15 +57,16 @@
     directives: {
       drag
     },
-    computed: {
-      tables () {
-        return storeERD.state.tables
+    data() {
+      return {
+        tables: storeERD.state.tables,
+        tableCheck: false
       }
     },
     methods: {
       // 컬럼 추가
       addColumn (id) {
-        JSLog('MainCanvas', 'addColumn', id);
+        JSLog('MainCanvas', 'addColumn', id)
         storeERD.commit({
           type: 'addColumn',
           id: id
@@ -73,25 +80,46 @@
           columnId: columnId
         })
       }
+    },
+    watch: {
+      tables () {
+        this.tableCheck = true
+      }
+    },
+    updated () {
+      if(this.tableCheck) {
+        $('.erd_table').draggable()
+        this.tableCheck = false
+      }
     }
   }
 
 </script>
 
 <style lang="scss" scoped>
-  .table {
+  .erd_table {
+    width: 808px;
     position: absolute;
     box-sizing: border-box;
-    background-color: #42b983;
-    width: 688px;
-  }
-  .tableHeader {
-    box-sizing: border-box;
-    background-color: #42b983;
-    width: 703px;
-    input {
-      width: 100%;
-      height: 100%;
+    background-color: #191919;
+    opacity: 0.9;
+    cursor: move;
+    padding-bottom: 10px;
+
+    .erd_table_top {
+      height: 25px;
     }
+
+    .erd_table_header {
+      margin-bottom: 10px;
+      box-sizing: border-box;
+
+      input {
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+      }
+    }
+
   }
 </style>

@@ -61,13 +61,14 @@
     max-width: 800px;
     min-width: 800px;
     /*padding: 5px 10px;*/
-    background-color: #fff;
+    background-color: #434343;
     clear: both;
     box-sizing: border-box;
     /*height: 42px;*/
     margin: 0 auto;
-    box-shadow: 0px 1px 6px #bcbcbc;
+    /*box-shadow: 0px 1px 6px #bcbcbc;*/
     z-index: 100;
+    opacity: 0.9;
   }
   .ui.fluid.dropdown {
     width: 20%;
