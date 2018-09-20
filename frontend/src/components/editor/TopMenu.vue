@@ -8,20 +8,19 @@
                   placeholder="DB type"
                   @select="onSelect">
     </basic-select>
-    <!--<b-form-select v-model="selected" :options="options"/>-->
   </div>
 </template>
 
 <script>
   import storeERD from '../../store/erd'
-  import { BasicSelect } from 'vue-search-select'
+  import {BasicSelect} from 'vue-search-select'
 
   export default {
     name: 'TopMenu',
     components: {
       BasicSelect
     },
-    data () {
+    data() {
       return {
         item: {
           value: 'mysql5.7',
@@ -30,7 +29,7 @@
       }
     },
     computed: {
-      options () {
+      options() {
         return storeERD.state.DBTypes
       }
     },
@@ -39,12 +38,12 @@
       addTable: function () {
         storeERD.commit({type: 'addTable'})
       },
-      onSelect (item) {
+      onSelect(item) {
         this.item = item
       }
     },
     watch: {
-      item (val, oldVal) {
+      item(val, oldVal) {
         storeERD.commit({
           type: 'changeDB',
           DBType: val.value
@@ -70,6 +69,7 @@
     z-index: 100;
     opacity: 0.9;
   }
+
   .ui.fluid.dropdown {
     width: 20%;
   }

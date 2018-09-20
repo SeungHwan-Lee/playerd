@@ -1,6 +1,7 @@
 <template>
   <div>
-      <input type="text" placeholder="dataType" v-model="dataType"
+      <input type="text" placeholder="dataType" :value="dataType"
+             @change="changeDataType"
              @click="dataTypeHintVisible('show')"
              @keydown="dataTypeHintVisible('show')"
              @keyup="selectFocus"
@@ -16,14 +17,31 @@
 
   export default {
     name: "DataType",
-    props: ['tableId', 'columnId'],
+    props: ['tableId', 'columnId', 'dataTypeProp'],
     data () {
       return {
-        dataType: '',
         selected: '',
         options: [],
         hintCheck: true,
         searchCheck: true
+      }
+    },
+    computed: {
+      dataType: {
+        get () {
+          return this.dataTypeProp
+        },
+        set (val) {
+          storeERD.commit({
+            type: 'changeDataType',
+            tableId: this.tableId,
+            columnId: this.columnId,
+            dataType: val
+          })
+          if(this.searchCheck) {
+            this.setSearchOptions(val)
+          }
+        }
       }
     },
     created () {
@@ -48,18 +66,6 @@
       }.bind(this))
     },
     watch: {
-      // 데이터 변경
-      dataType (val) {
-        storeERD.commit({
-          type: 'changeDataType',
-          tableId: this.tableId,
-          columnId: this.columnId,
-          dataType: val
-        })
-        if(this.searchCheck) {
-          this.setSearchOptions(val)
-        }
-      },
       // 데이터타입 힌트에 따른 데이터 변경
       selected (val) {
         if(val !== '') {
@@ -102,6 +108,18 @@
         }else {
           this.searchCheck = true
         }
+      },
+      // 데이터 변경
+      changeDataType (e) {
+        storeERD.commit({
+          type: 'changeDataType',
+          tableId: this.tableId,
+          columnId: this.columnId,
+          dataType: e.target.value
+        })
+        if(this.searchCheck) {
+          this.setSearchOptions(e.target.value)
+        }
       }
     }
   }
@@ -109,6 +127,7 @@
 
 <style lang="scss" scoped>
   .custom-select {
+    width: 168px;
     position: absolute;
     z-index: 2000;
   }

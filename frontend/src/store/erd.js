@@ -30,6 +30,16 @@ export default new Vuex.Store({
       JSLog('storeERD', 'addTable')
       JSLog('to', state.tables)
     },
+    // 테이블 삭제
+    deleteTable (state, data) {
+      let len = state.tables.length
+      for(let i=0; i<len; i++) {
+        if(data.id === state.tables[i].id) {
+          state.tables.splice(i, 1)
+          break
+        }
+      }
+    },
     // 컬럼 추가
     addColumn (state, data) {
       let len = state.tables.length
@@ -42,6 +52,17 @@ export default new Vuex.Store({
             dataType: null,
             isNull: true
           })
+          break
+        }
+      }
+    },
+    // 컬럼 삭제
+    deleteColumn (state, data) {
+      let table = getData(state.tables, data.tableId)
+      let len = table.columns.length
+      for(let i=0; i<len; i++) {
+        if(data.columnId === table.columns[i].id) {
+          table.columns.splice(i, 1)
           break
         }
       }
