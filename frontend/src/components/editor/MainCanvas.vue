@@ -15,7 +15,7 @@
         <div class="erd_column" v-for="column in table.columns" :key="column.id">
           <div>
             <input type="text" placeholder="column" v-model="column.name"/>
-            <data-type :tableId="table.id" :columnId="column.id" :dataTypeProp="column.dataType"></data-type>
+            <data-type :tableId="table.id" :columnId="column.id"></data-type>
             <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
             <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else/>
             <input type="text" placeholder="comment" v-model="column.comment"/>

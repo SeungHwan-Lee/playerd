@@ -1,7 +1,6 @@
 <template>
   <div>
-      <input type="text" placeholder="dataType" :value="dataType"
-             @change="changeDataType"
+      <input type="text" placeholder="dataType" v-model="dataType"
              @click="dataTypeHintVisible('show')"
              @keydown="dataTypeHintVisible('show')"
              @keyup="selectFocus"
@@ -13,38 +12,27 @@
 
 <script>
   import storeERD from '../../store/erd'
-  import { getDataTypeOptions, getOptionSearch } from '../../utils/common'
+  import { getDataTypeOptions, getOptionSearch, getData } from '../../utils/common'
 
   export default {
     name: "DataType",
-    props: ['tableId', 'columnId', 'dataTypeProp'],
+    props: ['tableId', 'columnId'],
     data () {
       return {
+        dataType: '',
         selected: '',
         options: [],
         hintCheck: true,
         searchCheck: true
       }
     },
-    computed: {
-      dataType: {
-        get () {
-          return this.dataTypeProp
-        },
-        set (val) {
-          storeERD.commit({
-            type: 'changeDataType',
-            tableId: this.tableId,
-            columnId: this.columnId,
-            dataType: val
-          })
-          if(this.searchCheck) {
-            this.setSearchOptions(val)
-          }
-        }
-      }
-    },
     created () {
+      // 무빙시 데이터 바인딩
+      let table = getData(storeERD.state.tables, this.tableId)
+      let column = getData(table.columns, this.columnId)
+      if(column.dataType) {
+        this.dataType = column.dataType
+      }
       // 데이터타입 힌트 셋팅
       this.options = getDataTypeOptions()
     },
@@ -66,6 +54,18 @@
       }.bind(this))
     },
     watch: {
+      // 데이터 변경
+      dataType (val) {
+        storeERD.commit({
+          type: 'changeDataType',
+          tableId: this.tableId,
+          columnId: this.columnId,
+          dataType: val
+        })
+        if(this.searchCheck) {
+          this.setSearchOptions(val)
+        }
+      },
       // 데이터타입 힌트에 따른 데이터 변경
       selected (val) {
         if(val !== '') {
@@ -107,18 +107,6 @@
           $(this.$el).find('select > option').eq(0).prop('selected', true)
         }else {
           this.searchCheck = true
-        }
-      },
-      // 데이터 변경
-      changeDataType (e) {
-        storeERD.commit({
-          type: 'changeDataType',
-          tableId: this.tableId,
-          columnId: this.columnId,
-          dataType: e.target.value
-        })
-        if(this.searchCheck) {
-          this.setSearchOptions(e.target.value)
         }
       }
     }
