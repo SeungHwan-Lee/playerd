@@ -6,15 +6,15 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTable, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faTable, faPlus, faTimes, faKey} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 
 Vue.use(BootstrapVue)
-library.add(faTable, faPlus, faTimes)
+library.add(faTable, faPlus, faTimes, faKey)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // eventBus
@@ -34,31 +34,31 @@ new Vue({
 /**
  * 전역 로그
  * @param option 옵션 'to' -> toString
- * @param obj toString할 객체
+ * @param list
  * @constructor
  */
-window.JSLog = function (option, obj) {
+window.JSLog = function (option, ...list) {
   if (option === 'to') {
-    let log = ''
-    let objs = []
-    let i = 0
-    for (let prop in obj) {
-      if(i !== 0) {
-        log += 'JSLog: '
+    list.forEach(obj => {
+      let log = '', objs = [], i = 0
+      for (let prop in obj) {
+        if (i !== 0) {
+          log += 'JSLog: '
+        }
+        i++
+        log += [prop, ' : ', obj[prop], '\n'].join('')
+        if (typeof(obj[prop]) === 'object') {
+          objs.push({
+            name: prop,
+            o: obj[prop]
+          });
+        }
       }
-      i++
-      log += prop+' : '+obj[prop] + '\n'
-      if(typeof(obj[prop]) === 'object') {
-        objs.push({
-          name: prop,
-          o: obj[prop]
-        });
-      }
-    }
-    JSLog(log)
-    objs.forEach(function(v){
-      JSLog('-> '+v.name)
-      JSLog('to', v.o)
+      JSLog(log)
+      objs.forEach(function (v) {
+        JSLog('-> ' + v.name)
+        JSLog('to', v.o)
+      })
     })
   } else {
     let args = Array.prototype.slice.call(arguments)

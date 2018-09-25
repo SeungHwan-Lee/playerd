@@ -1,8 +1,3 @@
-import Vue from "vue"
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
 // mysql5.7 dataType
 export const mysql5_7 = {
   name: 'mysql5.7',

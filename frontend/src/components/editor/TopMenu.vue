@@ -6,7 +6,7 @@
     <basic-select :options="options"
                   :selected-option="item"
                   placeholder="DB type"
-                  @select="onSelect">
+                  @select="selectDB">
     </basic-select>
   </div>
 </template>
@@ -36,14 +36,18 @@
     methods: {
       // 테이블 추가
       addTable: function () {
+        JSLog('TopMenu', 'addTable')
         storeERD.commit({type: 'addTable'})
       },
-      onSelect(item) {
+      // DB 선택
+      selectDB(item) {
+        JSLog('TopMenu', 'selectDB')
+        JSLog('to', item)
         this.item = item
       }
     },
     watch: {
-      item(val, oldVal) {
+      item(val) {
         storeERD.commit({
           type: 'changeDB',
           DBType: val.value

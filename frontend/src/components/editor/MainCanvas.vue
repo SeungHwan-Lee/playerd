@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="erd_table" v-for="table in tables" :key="table.id">
+    <div class="erd_table" :class="{ selected: table.option.selected}"
+         v-for="table in tables"
+         :key="table.id"
+         @mousedown="tableSelected(table.id)">
       <div class="erd_table_top"></div>
       <div class="erd_table_header">
         <input type="text" placeholder="table" v-model="table.name"/>
@@ -14,10 +17,11 @@
       <draggable v-model="table.columns" :options="{group:'table'}">
         <div class="erd_column" v-for="column in table.columns" :key="column.id">
           <div>
+            <div class="erd_column_key"><font-awesome-icon icon="key"/></div>
             <input type="text" placeholder="column" v-model="column.name"/>
             <data-type :tableId="table.id" :columnId="column.id"></data-type>
-            <input type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
-            <input type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else/>
+            <input class="erd_column_not_null" type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
+            <input class="erd_column_not_null" type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else/>
             <input type="text" placeholder="comment" v-model="column.comment"/>
             <b-button variant="outline-danger" @click="deleteColumn(table.id, column.id)">
               <font-awesome-icon icon="times"/>
@@ -30,7 +34,7 @@
 </template>
 
 <script>
-  import storeERD from '../../store/erd'
+  import storeERD from '@/store/erd'
   import DataType from './DataType'
   import draggable from 'vuedraggable'
 
@@ -79,6 +83,14 @@
           type: 'deleteTable',
           id: id
         })
+      },
+      // 테이블 선택
+      tableSelected(id) {
+        JSLog('MainCanvas', 'tableSelected', id)
+        storeERD.commit({
+          type: 'tableSelected',
+          ids: [id]
+        })
       }
     },
     watch: {
@@ -98,7 +110,7 @@
 
 <style lang="scss" scoped>
   .erd_table {
-    width: 650px;
+    width: 672px;
     position: absolute;
     box-sizing: border-box;
     background-color: #191919;
@@ -125,12 +137,14 @@
     }
 
     .erd_column {
+      overflow: hidden;
+
       input, div {
         float: left;
         margin-right: 10px;
         margin-bottom: 2px;
       }
-      input:nth-child(3) {
+      .erd_column_not_null {
         width: 45px;
         cursor: pointer;
       }
@@ -139,7 +153,14 @@
         width: 25px;
         height: 25px;
       }
+      .erd_column_key {
+        width: 16px;
+      }
     }
 
+  }
+  .erd_table.selected {
+    border: solid #14496d 1px;
+    box-shadow: 0 1px 6px #14496d;
   }
 </style>

@@ -1,17 +1,17 @@
 import storeERD from '../store/erd'
 
 // UUID 생성
-export const guid = function () {
+export const guid = () => {
   function s4() {
     return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1)
   }
   return [s4(),s4(),'-',s4(),'-',s4(),'-',s4(),'-',s4(),s4(),s4()].join('')
 }
 
+//==================== ERD ====================
 // id -> data 반환
-export const getData = function (list, id) {
-  let len = list.length
-  for(let i=0; i<len; i++) {
+export const getData = (list, id) => {
+  for(let i in list) {
     if(id === list[i].id) {
       return list[i]
     }
@@ -19,11 +19,10 @@ export const getData = function (list, id) {
 }
 
 // dataType 리스트 options 형태로 반환
-export const getDataTypeOptions = function () {
-  let len = storeERD.state.DBTypes.length
+export const getDataTypeOptions = () => {
   let dbType = storeERD.state.DBType
   let dataTypes = []
-  for(let i=0; i<len; i++) {
+  for(let i in storeERD.state.DBTypes) {
     if(dbType === storeERD.state.DBTypes[i].value) {
       dataTypes = storeERD.state.DBTypes[i].dataTypes
       break
@@ -40,11 +39,10 @@ export const getDataTypeOptions = function () {
 }
 
 // option 검색
-export const getOptionSearch = function (key) {
+export const getOptionSearch = (key) => {
   let options = getDataTypeOptions()
-  let check = true
-  for(let i=0; i<options.length; i++) {
-    check = true
+  for(let i in options) {
+    let check = true
     if(options[i].text.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
       check = false
     }
@@ -55,3 +53,4 @@ export const getOptionSearch = function (key) {
   }
   return options
 }
+//==================== ERD END ====================

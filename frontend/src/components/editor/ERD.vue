@@ -1,12 +1,13 @@
 <template>
   <div class="erd">
-    <top-menu />
-    <main-canvas />
+    <top-menu/>
+    <main-canvas/>
   </div>
 </template>
 
 <script>
-  import '../../css/common.css'
+  import '@/css/erd.css'
+  import init from '@/js/initialize'
   import TopMenu from './TopMenu'
   import MainCanvas from './MainCanvas'
 
@@ -15,6 +16,13 @@
     components: {
       MainCanvas,
       TopMenu
+    },
+    created() {
+      // 오른쪽 클릭 이벤트
+      window.addEventListener('contextmenu', (e) => { // Not compatible with IE < 9
+        e.preventDefault()
+        init.onRightClick()
+      })
     }
   }
 </script>
@@ -27,6 +35,7 @@
 
     font-size: 12px;
   }
+
   .erd {
     display: flex;
     position: fixed;
