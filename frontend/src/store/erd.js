@@ -26,7 +26,7 @@ export default new Vuex.Store({
         name: null,
         comment: null,
         columns: [],
-        option: {
+        ui: {
           selected: false
         }
       })
@@ -49,7 +49,14 @@ export default new Vuex.Store({
             name: null,
             comment: null,
             dataType: null,
-            isNull: true
+            isNull: true,
+            ui: {
+              key: {
+                pk: false,
+                fk: false,
+                pfk: false
+              }
+            }
           })
           break
         }
@@ -85,7 +92,7 @@ export default new Vuex.Store({
     tableSelected(state, data) {
       state.tables.forEach(v => {
         data.ids.forEach(id => {
-          v.option.selected = id === v.id;
+          v.ui.selected = id === v.id;
         })
       })
     }
