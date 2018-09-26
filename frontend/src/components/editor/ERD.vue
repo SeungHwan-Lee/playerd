@@ -1,28 +1,24 @@
 <template>
   <div class="erd">
-    <top-menu/>
-    <main-canvas/>
+    <TopMenu/>
+    <MainCanvas/>
+    <TableMenu/>
   </div>
 </template>
 
 <script>
   import '@/css/erd.css'
-  import init from '@/js/initialize'
+  import '@/js/Initialize'
   import TopMenu from './TopMenu'
+  import TableMenu from './TableMenu'
   import MainCanvas from './MainCanvas'
 
   export default {
     name: 'ERD',
     components: {
-      MainCanvas,
-      TopMenu
-    },
-    created() {
-      // 오른쪽 클릭 이벤트
-      window.addEventListener('contextmenu', (e) => { // Not compatible with IE < 9
-        e.preventDefault()
-        init.onRightClick()
-      })
+      TopMenu,
+      TableMenu,
+      MainCanvas
     }
   }
 </script>

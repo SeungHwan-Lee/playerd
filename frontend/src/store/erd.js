@@ -51,6 +51,7 @@ export default new Vuex.Store({
             dataType: null,
             isNull: true,
             ui: {
+              selected: false,
               key: {
                 pk: false,
                 fk: false,
@@ -91,10 +92,40 @@ export default new Vuex.Store({
     // table 선택
     tableSelected(state, data) {
       state.tables.forEach(v => {
-        data.ids.forEach(id => {
-          v.ui.selected = id === v.id;
-        })
+        v.ui.selected = data.id === v.id;
       })
+      if(data.onlyTableSelected) {
+        columnSelectedNone(state)
+      }
+    },
+    // column 선택
+    columnSelected(state, data) {
+      columnSelectedNone(state)
+      let table = getData(state.tables, data.tableId)
+      let column = getData(table.columns, data.columnId)
+      column.ui.selected = true
+    },
+    columnKey(state, data) {
+      switch (data.key) {
+        case 'pk':
+          state.tables.forEach(table => {
+            table.columns.forEach(v => {
+              if(v.ui.selected) {
+                v.ui.key.pk = true
+              }
+            })
+          })
+          break
+      }
     }
   }
 })
+
+// column 선택 초기화
+function columnSelectedNone(state) {
+  state.tables.forEach(table => {
+    table.columns.forEach(v => {
+      v.ui.selected = false
+    })
+  })
+}
