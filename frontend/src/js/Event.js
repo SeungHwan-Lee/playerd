@@ -10,11 +10,10 @@ class Event {
     this.setEvent()
   }
 
-  setCore(core) {
+  init(core) {
+    JSLog('Class Event init')
     this.core = core
   }
-
-  init() {}
 
   setEvent() {
     // 오른쪽 클릭 이벤트

@@ -16,8 +16,7 @@ class Initialize {
 
   setInit(core) {
     Object.keys(this.core).forEach(function(v){
-      this[v].setCore(core)
-      this[v].init()
+      this[v].init(core)
     }.bind(this.core))
   }
 

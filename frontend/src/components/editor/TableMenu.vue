@@ -3,7 +3,7 @@
     <li v-for="menu in menus" :key="menu.id" @click="menuAction(menu.type)">
       <span>{{ menu.icon }}</span>
       <span>{{ menu.name }}</span>
-      <span>{{ menu.key }}</span>
+      <span>{{ menu.keymap }}</span>
     </li>
   </ul>
 </template>
@@ -21,7 +21,7 @@
             type: 'pk_active',
             icon: '',
             name: 'PK 컬럼으로 지정',
-            key: ''
+            keymap: ''
           }
         ]
       }
@@ -41,13 +41,27 @@
     },
     mounted() {
       // 오른쪽 클릭 이벤트 등록
-      event.addRightClick(function(e){
+      event.addRightClick(function (e) {
         const $el = $(this)
         $el.css({
           top: `${e.clientY}px`,
           left: `${e.clientX}px`
         })
         $el.show()
+      }.bind(this.$el))
+      // 메뉴 hide
+      $(document).on('mousedown', function (e) {
+        const $el = $(this)
+        let offset = $el.offset()
+        offset.width = $el.width()
+        offset.height = $el.height()
+
+        if (!(offset.top <= e.clientY
+          && e.clientY <= offset.top + offset.height
+          && offset.left <= e.clientX
+          && e.clientX <= offset.left + offset.width)) {
+          $el.hide()
+        }
       }.bind(this.$el))
     }
   }

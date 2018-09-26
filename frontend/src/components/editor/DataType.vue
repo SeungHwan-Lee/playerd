@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dataType">
     <input type="text" placeholder="dataType" v-model="dataType"
            @click="dataTypeHintVisible('show')"
            @keydown="dataTypeHintVisible('show')"
@@ -37,14 +37,14 @@
       },
       // 데이터타입 힌트 show,hide
       dataTypeHintVisible(type) {
-        JSLog('dataTypeHintVisible', type)
-        if (type === 'show') this.hintCheck = true
+        JSLog('DataType', 'dataTypeHintVisible', type)
+        this.hintCheck = type === 'show'
         $(this.$el).find('select')[type]()
       },
       // 데이터타입 힌트 hide 타임셋
       dataTypeHintHide() {
         setTimeout(function () {
-          JSLog(this.hintCheck)
+          JSLog('DataType', 'dataTypeHintHide', this.hintCheck)
           if (this.hintCheck) {
             this.dataTypeHintVisible('hide')
           }
@@ -95,7 +95,6 @@
     },
     mounted() {
       // 데이터타입 힌트 hide
-      this.dataTypeHintVisible('hide')
       $(this.$el).find('select').mouseleave(function () {
         this.dataTypeHintVisible('hide')
       }.bind(this))
@@ -118,5 +117,6 @@
     width: 168px;
     position: absolute;
     z-index: 2000;
+    display: none;
   }
 </style>

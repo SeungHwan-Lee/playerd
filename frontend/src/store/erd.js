@@ -105,16 +105,11 @@ export default new Vuex.Store({
       let column = getData(table.columns, data.columnId)
       column.ui.selected = true
     },
+    // column key active
     columnKey(state, data) {
       switch (data.key) {
         case 'pk':
-          state.tables.forEach(table => {
-            table.columns.forEach(v => {
-              if(v.ui.selected) {
-                v.ui.key.pk = true
-              }
-            })
-          })
+          setColumnKey(state, data.key)
           break
       }
     }
@@ -128,4 +123,21 @@ function columnSelectedNone(state) {
       v.ui.selected = false
     })
   })
+}
+
+// column key active
+function setColumnKey(state, key) {
+  for(let table of state.tables) {
+    let check = false
+    for(let column of table.columns) {
+      if(column.ui.selected) {
+        column.ui.key[key] = true
+        check = true
+        break
+      }
+    }
+    if(check) {
+      break
+    }
+  }
 }
