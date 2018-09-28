@@ -55,6 +55,7 @@
   import storeERD from '@/store/erd'
   import DataType from './DataType'
   import draggable from 'vuedraggable'
+  import {getZIndex} from '@/js/common'
 
   export default {
     name: 'MainCanvas',
@@ -124,10 +125,13 @@
       }
     },
     updated() {
-      $('.erd_table').draggable()
+      $('.erd_table').draggable().off('mousedown', zIndex).mousedown(zIndex)
     }
   }
-
+  // z-index 콜백 함수
+  function zIndex() {
+    $(this).css('z-index', getZIndex('.erd_table'))
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -146,6 +150,7 @@
     opacity: 0.9;
     cursor: move;
     padding: 10px;
+    z-index: 1;
 
     .erd_table_top {
       height: 15px;
@@ -215,9 +220,11 @@
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
+
   .slide-fade-leave-active {
     transition: all .4s ease-out;
   }
+
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateX(10px);
     opacity: 0;

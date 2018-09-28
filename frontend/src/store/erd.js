@@ -131,7 +131,7 @@ function setColumnKey(state, key) {
     let check = false
     for(let column of table.columns) {
       if(column.ui.selected) {
-        column.ui.key[key] = true
+        column.ui.key[key] = !column.ui.key[key]
         check = true
         break
       }

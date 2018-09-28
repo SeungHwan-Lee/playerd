@@ -20,7 +20,7 @@
           {
             type: 'pk_active',
             icon: '',
-            name: 'PK 컬럼으로 지정',
+            name: 'PK',
             keymap: ''
           }
         ]

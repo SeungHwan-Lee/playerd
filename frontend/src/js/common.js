@@ -39,7 +39,7 @@ export const getDataTypeOptions = () => {
 }
 
 // option 검색
-export const getOptionSearch = (key) => {
+export const getOptionSearch = key => {
   let options = getDataTypeOptions()
   for(let i in options) {
     let check = true
@@ -53,4 +53,17 @@ export const getOptionSearch = (key) => {
   }
   return options
 }
+
+// max z-index 반환
+export const getZIndex = el => {
+  let max = 0
+  $(el).each(function(){
+    let zIndex = Number($(this).css('z-index'))
+    if(max < zIndex) {
+      max = zIndex
+    }
+  })
+  return ++max
+}
+
 //==================== ERD END ====================
