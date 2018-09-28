@@ -10,6 +10,7 @@ class Event {
     this.setEvent()
   }
 
+  // 종속성 초기화
   init(core) {
     JSLog('Class Event init')
     this.core = core

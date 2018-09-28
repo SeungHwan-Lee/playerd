@@ -1,12 +1,13 @@
 import event from './Event'
 
 /**
- * 초기화 클래스
+ * core 클래스
  */
-class Initialize {
+class ERD {
   constructor() {
-    JSLog('Class Initialize')
+    JSLog('Class ERD')
 
+    // 모듈 객체
     this.core = {
       event: event
     }
@@ -14,7 +15,9 @@ class Initialize {
     this.setInit(this.core)
   }
 
+  // 종속성 초기화
   setInit(core) {
+    JSLog('Class ERD Init')
     Object.keys(this.core).forEach(function(v){
       this[v].init(core)
     }.bind(this.core))
@@ -22,4 +25,4 @@ class Initialize {
 
 }
 
-export default new Initialize()
+export default new ERD()

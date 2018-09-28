@@ -9,8 +9,9 @@
 </template>
 
 <script>
-  import event from '@/js/Event'
+  import ERD from '@/js/ERD'
   import storeERD from '@/store/erd'
+  import {getZIndex} from '@/js/common'
 
   export default {
     name: 'TableMenu',
@@ -41,11 +42,12 @@
     },
     mounted() {
       // 오른쪽 클릭 이벤트 등록
-      event.addRightClick(function (e) {
+      ERD.core.event.addRightClick(function (e) {
         const $el = $(this)
         $el.css({
           top: `${e.clientY}px`,
-          left: `${e.clientX}px`
+          left: `${e.clientX}px`,
+          'z-index': getZIndex('.erd_table')
         })
         $el.show()
       }.bind(this.$el))

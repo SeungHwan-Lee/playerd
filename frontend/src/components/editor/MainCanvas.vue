@@ -125,6 +125,7 @@
       }
     },
     updated() {
+      // table 이동 이벤트
       $('.erd_table').draggable().off('mousedown', zIndex).mousedown(zIndex)
     }
   }

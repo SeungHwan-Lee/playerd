@@ -8,7 +8,7 @@
 
 <script>
   import '@/css/erd.css'
-  import '@/js/Initialize'
+  import '@/js/ERD'
   import TopMenu from './TopMenu'
   import TableMenu from './TableMenu'
   import MainCanvas from './MainCanvas'
