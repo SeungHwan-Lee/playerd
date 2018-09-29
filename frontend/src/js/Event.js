@@ -23,11 +23,11 @@ class Event {
       this.core.event.onRightClick(e)
     }.bind(this))
     // 페이지 이동시 경고창
-    window.onbeforeunload = e => {
-      const dialogText = 'Dialog text here';
-      e.returnValue = dialogText;
-      return dialogText;
-    }
+    // window.onbeforeunload = e => {
+    //   const dialogText = 'Dialog text here';
+    //   e.returnValue = dialogText;
+    //   return dialogText;
+    // }
   }
 
   // 오른쪽 클릭 이벤트 추가

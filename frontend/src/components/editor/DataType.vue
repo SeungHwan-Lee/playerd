@@ -6,7 +6,7 @@
            @keyup="selectFocus"
            @mouseout="dataTypeHintHide"
            @blur="dataTypeHintHide"/>
-    <b-form-select ref="box" v-model="selected" :options="options" class="mb-4" :select-size="20"></b-form-select>
+    <b-form-select ref="box" v-model="selected" :options="options" class="select" :select-size="20"></b-form-select>
   </div>
 </template>
 
@@ -84,6 +84,7 @@
       }
     },
     created() {
+      JSLog(this.tableId)
       // 무빙시 데이터 바인딩
       let table = getData(storeERD.state.tables, this.tableId)
       let column = getData(table.columns, this.columnId)
@@ -113,7 +114,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .custom-select {
+  .select {
     width: 168px;
     position: absolute;
     z-index: 2000;

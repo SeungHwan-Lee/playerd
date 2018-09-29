@@ -1,11 +1,9 @@
-<template>
-  <ul class="menu">
-    <li v-for="menu in menus" :key="menu.id" @click="menuAction(menu.type)">
-      <span>{{ menu.icon }}</span>
-      <span>{{ menu.name }}</span>
-      <span>{{ menu.keymap }}</span>
-    </li>
-  </ul>
+<template lang="pug">
+  ul.menu
+    li(v-for="menu in menus" :key="menu.id" @click="menuAction(menu.type)")
+      span {{ menu.icon }}
+      span {{ menu.name }}
+      span {{ menu.keymap }}
 </template>
 
 <script>

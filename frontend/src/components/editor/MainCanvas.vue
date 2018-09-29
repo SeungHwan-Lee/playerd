@@ -1,54 +1,28 @@
-<template>
-  <div>
-    <transition-group name="slide-fade" tag="div">
-      <div class="erd_table"
-           :class="{ selected: table.ui.selected}"
-           v-for="table in tables"
-           :key="table.id"
-           @mousedown="tableSelected(table.id)">
+<template lang="pug">
+  transition-group(name="slide-fade" tag="div")
+    .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)")
 
-        <div class="erd_table_top"></div>
-        <div class="erd_table_header">
-          <input type="text" placeholder="table" v-model="table.name"/>
-          <b-button variant="outline-primary" @click="addColumn(table.id)">
-            <font-awesome-icon icon="plus"/>
-          </b-button>
-          <b-button variant="outline-danger" @click="deleteTable(table.id)">
-            <font-awesome-icon icon="times"/>
-          </b-button>
-        </div>
+      .erd_table_top
+      .erd_table_header
+        input(type="text" placeholder="table" v-model="table.name")
+        b-button(variant="outline-primary" @click="addColumn(table.id)")
+          font-awesome-icon(icon="plus")
+        b-button(variant="outline-danger" @click="deleteTable(table.id)")
+          font-awesome-icon(icon="times")
 
-        <draggable v-model="table.columns" :options="{group:'table'}">
-          <transition-group name="slide-fade" tag="div">
-            <div class="erd_column"
-                 v-for="column in table.columns" :key="column.id"
-                 :class="{ selected: column.ui.selected}"
-                 @mousedown="columnSelected(table.id, column.id)">
-              <div>
+      draggable(v-model="table.columns" :options="{group:'table'}")
+        transition-group(name="slide-fade" tag="div")
+          .erd_column(v-for="column in table.columns" :key="column.id" :class="{ selected: column.ui.selected}" @mousedown="columnSelected(table.id, column.id)")
 
-                <div class="erd_column_key"
-                     :class="{ pk: column.ui.key.pk, fk: column.ui.key.fk, pfk: column.ui.key.pfk }">
-                  <font-awesome-icon icon="key"/>
-                </div>
-                <input type="text" placeholder="column" v-model="column.name"/>
-                <data-type :tableId="table.id" :columnId="column.id"></data-type>
-                <input class="erd_column_not_null" type="text" readonly value="NULL"
-                       @click="changeNull(table.id, column.id)" v-if="column.isNull"/>
-                <input class="erd_column_not_null" type="text" readonly value="N-N"
-                       @click="changeNull(table.id, column.id)" v-else/>
-                <input type="text" placeholder="comment" v-model="column.comment"/>
-                <b-button variant="outline-danger" @click="deleteColumn(table.id, column.id)">
-                  <font-awesome-icon icon="times"/>
-                </b-button>
-
-              </div>
-            </div>
-          </transition-group>
-        </draggable>
-
-      </div>
-    </transition-group>
-  </div>
+            .erd_column_key(:class="{ pk: column.ui.key.pk, fk: column.ui.key.fk, pfk: column.ui.key.pfk }")
+              font-awesome-icon(icon="key")
+            input(type="text" placeholder="column" v-model="column.name")
+            data-type(:tableId="table.id" :columnId="column.id")
+            input.erd_column_not_null(type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull")
+            input.erd_column_not_null(type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else)
+            input(type="text" placeholder="comment" v-model="column.comment")
+            b-button(variant="outline-danger" @click="deleteColumn(table.id, column.id)")
+              font-awesome-icon(icon="times")
 </template>
 
 <script>
@@ -129,6 +103,7 @@
       $('.erd_table').draggable().off('mousedown', zIndex).mousedown(zIndex)
     }
   }
+
   // z-index 콜백 함수
   function zIndex() {
     $(this).css('z-index', getZIndex('.erd_table'))
@@ -144,7 +119,7 @@
   $key-pfk: #003366;
 
   .erd_table {
-    width: 674px;
+    width: 692px;
     position: absolute;
     box-sizing: border-box;
     background-color: $tbg;

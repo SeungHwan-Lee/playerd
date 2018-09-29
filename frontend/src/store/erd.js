@@ -103,7 +103,7 @@ export default new Vuex.Store({
       columnSelectedNone(state)
       let table = getData(state.tables, data.tableId)
       let column = getData(table.columns, data.columnId)
-      column.ui.selected = true
+      if(column) column.ui.selected = true
     },
     // column key active
     columnKey(state, data) {

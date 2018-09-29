@@ -1,14 +1,9 @@
-<template>
-  <div class="menuBar">
-    <b-button @click="addTable">
-      <font-awesome-icon icon="table"/>
-    </b-button>
-    <basic-select :options="options"
-                  :selected-option="item"
-                  placeholder="DB type"
-                  @select="selectDB">
-    </basic-select>
-  </div>
+<template lang="pug">
+  .menuBar
+    b-button(@click="addTable")
+      font-awesome-icon(icon="table")
+    .dbType
+      basic-select(placeholder="DB type" :options="options" :selected-option="item" @select="selectDB")
 </template>
 
 <script>
@@ -72,9 +67,9 @@
     /*box-shadow: 0px 1px 6px #bcbcbc;*/
     z-index: 100;
     opacity: 0.9;
-  }
 
-  .ui.fluid.dropdown {
-    width: 20%;
+    .dbType {
+      width: 20%;
+    }
   }
 </style>

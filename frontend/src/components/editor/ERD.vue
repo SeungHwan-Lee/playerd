@@ -1,9 +1,8 @@
-<template>
-  <div class="erd">
-    <TopMenu/>
-    <MainCanvas/>
-    <TableMenu/>
-  </div>
+<template lang="pug">
+  .erd
+    top-menu
+    main-canvas
+    table-menu
 </template>
 
 <script>
