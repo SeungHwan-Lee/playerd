@@ -117,7 +117,6 @@
   .select {
     width: 168px;
     position: absolute;
-    z-index: 2000;
     display: none;
   }
 </style>
