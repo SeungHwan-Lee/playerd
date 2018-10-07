@@ -1,0 +1,66 @@
+<template lang="pug">
+  svg#svg(width="100%" height="100%")
+    path(v-for="line in toLines" :d="line.points" stroke="red" fill="transparent")
+</template>
+
+<script>
+  import storeERD from '@/store/erd'
+
+  export default {
+    name: "SVGCanvas",
+    data() {
+      return {
+        lines: [
+          {
+            id: '',
+            points: [
+              {
+                x: 100,
+                y: 150
+              },
+              {
+                x: 200,
+                y: 200
+              }
+            ]
+          },
+          {
+            id: '',
+            points: [
+              {
+                x: 400,
+                y: 150
+              },
+              {
+                x: 600,
+                y: 200
+              }
+            ]
+          }
+        ]
+      }
+    },
+    computed: {
+      toLines() {
+        const lines = []
+        this.lines.forEach(v => {
+          const points = []
+          points.push(`M${v.points[0].x} ${v.points[0].y}`)
+          points.push(`Q ${(v.points[0].x + v.points[1].x) / 2} ${v.points[0].y}`)
+          points.push(`${v.points[1].x} ${v.points[1].y}`)
+          lines.push({
+            id: v.id,
+            points: points.join(' ')
+          })
+        })
+        return lines
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  #svg {
+    position: fixed;
+  }
+</style>

@@ -56,6 +56,16 @@ class Event {
       if (typeof v.fn === 'function') v.fn(e)
     })
   }
+
+  // 전역 커서 설정
+  cursor(type) {
+    if(type) {
+      $('body').css('cursor', `url("/static/images/erd/${type}.png") 16 16, auto`)
+    }else {
+      $('body').removeAttr('style')
+    }
+  }
+
 }
 
 export default new Event()

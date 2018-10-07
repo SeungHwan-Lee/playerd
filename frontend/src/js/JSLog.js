@@ -13,7 +13,7 @@ window.JSLog = function (option, ...list) {
           log += 'JSLog: '
         }
         i++
-        log += [prop, ' : ', obj[prop], '\n'].join('')
+        log += `${prop} : ${obj[prop]} \n`
         if (typeof(obj[prop]) === 'object') {
           objs.push({
             name: prop,
@@ -23,12 +23,12 @@ window.JSLog = function (option, ...list) {
       }
       JSLog(log)
       objs.forEach(function (v) {
-        JSLog('-> ' + v.name)
+        JSLog(`-> ${v.name}`)
         JSLog('to', v.o)
       })
     })
   } else {
     let args = Array.prototype.slice.call(arguments)
-    if (window.console) console.log('JSLog: ' + args.join(' | '))
+    if (window.console) console.log(`JSLog: ${args.join(' | ')}`)
   }
 }

@@ -1,10 +1,11 @@
 <template lang="pug">
   transition-group(name="slide-fade" tag="div")
-    .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)")
+    .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)" :table_id="table.id")
 
       .erd_table_top
       .erd_table_header
         input(type="text" placeholder="table" v-model="table.name")
+        input(type="text" placeholder="comment" v-model="table.comment")
         b-button(variant="outline-primary" @click="addColumn(table.id)")
           font-awesome-icon(icon="plus")
         b-button(variant="outline-danger" @click="deleteTable(table.id)")
@@ -100,7 +101,16 @@
     },
     updated() {
       // table 이동 이벤트
-      $('.erd_table').draggable().off('mousedown', zIndex).mousedown(zIndex)
+      $('.erd_table').draggable({
+        drag(e, ui) {
+          storeERD.commit({
+            type: 'tableTracker',
+            id: $(this).attr('table_id'),
+            top: ui.offset.top,
+            left: ui.offset.left
+          })
+        }
+      }).off('mousedown', zIndex).mousedown(zIndex)
     }
   }
 
@@ -136,13 +146,14 @@
       box-sizing: border-box;
       margin-bottom: 15px;
 
-      button, input {
+      button {
         margin-right: 5px;
       }
       input {
-        width: 83%;
+        width: 41%;
         height: 100%;
         font-size: 20px;
+        margin-right: 10px;
       }
     }
 

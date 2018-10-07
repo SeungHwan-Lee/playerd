@@ -16,7 +16,8 @@ export default new Vuex.Store({
         dataTypes: mysql5_7.dataTypes
       }
     ],
-    tables: []
+    tables: [],
+    lines:[]
   },
   mutations: {
     // 테이블 추가
@@ -27,7 +28,9 @@ export default new Vuex.Store({
         comment: null,
         columns: [],
         ui: {
-          selected: false
+          selected: false,
+          top: 0,
+          left: 0
         }
       })
     },
@@ -65,7 +68,7 @@ export default new Vuex.Store({
     },
     // 컬럼 삭제
     deleteColumn(state, data) {
-      let table = getData(state.tables, data.tableId)
+      const table = getData(state.tables, data.tableId)
       for (let i in table.columns) {
         if (data.columnId === table.columns[i].id) {
           table.columns.splice(i, 1)
@@ -75,14 +78,14 @@ export default new Vuex.Store({
     },
     // NULL 조건 변경
     changeNull(state, data) {
-      let table = getData(state.tables, data.tableId)
-      let column = getData(table.columns, data.columnId)
+      const table = getData(state.tables, data.tableId)
+      const column = getData(table.columns, data.columnId)
       column.isNull = !column.isNull
     },
     // 데이터타입 변경
     changeDataType(state, data) {
-      let table = getData(state.tables, data.tableId)
-      let column = getData(table.columns, data.columnId)
+      const table = getData(state.tables, data.tableId)
+      const column = getData(table.columns, data.columnId)
       column.dataType = data.dataType
     },
     // DB 변경
@@ -101,8 +104,8 @@ export default new Vuex.Store({
     // column 선택
     columnSelected(state, data) {
       columnSelectedNone(state)
-      let table = getData(state.tables, data.tableId)
-      let column = getData(table.columns, data.columnId)
+      const table = getData(state.tables, data.tableId)
+      const column = getData(table.columns, data.columnId)
       if(column) column.ui.selected = true
     },
     // column key active
@@ -112,6 +115,12 @@ export default new Vuex.Store({
           setColumnKey(state, data.key)
           break
       }
+    },
+    // table top, left 변경
+    tableTracker(state, data) {
+      const table = getData(state.tables, data.id)
+      table.ui.top = data.top
+      table.ui.left = data.left
     }
   }
 })

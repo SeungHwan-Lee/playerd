@@ -20,7 +20,7 @@ export const getData = (list, id) => {
 
 // dataType 리스트 options 형태로 반환
 export const getDataTypeOptions = () => {
-  let dbType = storeERD.state.DBType
+  const dbType = storeERD.state.DBType
   let dataTypes = []
   for(let i in storeERD.state.DBTypes) {
     if(dbType === storeERD.state.DBTypes[i].value) {
@@ -28,7 +28,7 @@ export const getDataTypeOptions = () => {
       break
     }
   }
-  let options = []
+  const options = []
   dataTypes.forEach(function(v){
     options.push({
       value: v.name,
@@ -40,7 +40,7 @@ export const getDataTypeOptions = () => {
 
 // option 검색
 export const getOptionSearch = key => {
-  let options = getDataTypeOptions()
+  const options = getDataTypeOptions()
   for(let i in options) {
     let check = true
     if(options[i].text.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
@@ -58,7 +58,7 @@ export const getOptionSearch = key => {
 export const getZIndex = el => {
   let max = 0
   $(el).each(function(){
-    let zIndex = Number($(this).css('z-index'))
+    const zIndex = Number($(this).css('z-index'))
     if(max < zIndex) {
       max = zIndex
     }

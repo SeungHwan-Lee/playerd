@@ -1,7 +1,9 @@
 <template lang="pug">
   ul.menu
     li(v-for="menu in menus" :key="menu.id" @click="menuAction(menu.type)")
-      span {{ menu.icon }}
+      span
+        img(:src="menu.icon" v-if="menu.icon !== ''")
+        span(v-else)
       span {{ menu.name }}
       span {{ menu.keymap }}
 </template>
@@ -17,9 +19,15 @@
       return {
         menus: [
           {
-            type: 'pk_active',
+            type: 'pk',
             icon: '',
             name: 'PK',
+            keymap: ''
+          },
+          {
+            type: 'erd-0-1-N',
+            icon: '/static/images/erd/erd-0-1-N.png',
+            name: '비식별관계',
             keymap: ''
           }
         ]
@@ -29,11 +37,14 @@
       // menu 동작
       menuAction(type) {
         switch (type) {
-          case 'pk_active':
+          case 'pk':
             storeERD.commit({
               type: 'columnKey',
-              key: 'pk'
+              key: type
             })
+            break
+          case 'erd-0-1-N':
+            ERD.core.event.cursor(type)
             break
         }
       }
@@ -61,6 +72,7 @@
           && offset.left <= e.clientX
           && e.clientX <= offset.left + offset.width)) {
           $el.hide()
+          ERD.core.event.cursor()
         }
       }.bind(this.$el))
     }
@@ -79,14 +91,23 @@
     li {
       width: 100%;
       height: 100%;
-      padding: 15px;
+      padding: 10px;
       cursor: pointer;
 
       &:hover {
         color: white;
         background-color: #383d41;
       }
-    }
 
+      & > span {
+        padding: 5px;
+
+        img, span {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
   }
 </style>

@@ -1,8 +1,9 @@
 <template lang="pug">
   .erd
-    top-menu
-    main-canvas
-    table-menu
+    TopMenu
+    TableMenu
+    MainCanvas
+    SVGCanvas
 </template>
 
 <script>
@@ -11,13 +12,15 @@
   import TopMenu from './TopMenu'
   import TableMenu from './TableMenu'
   import MainCanvas from './MainCanvas'
+  import SVGCanvas from './SVGCanvas'
 
   export default {
     name: 'ERD',
     components: {
       TopMenu,
       TableMenu,
-      MainCanvas
+      MainCanvas,
+      SVGCanvas
     }
   }
 </script>
