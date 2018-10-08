@@ -10,34 +10,7 @@
     name: "SVGCanvas",
     data() {
       return {
-        lines: [
-          {
-            id: '',
-            points: [
-              {
-                x: 100,
-                y: 150
-              },
-              {
-                x: 200,
-                y: 200
-              }
-            ]
-          },
-          {
-            id: '',
-            points: [
-              {
-                x: 400,
-                y: 150
-              },
-              {
-                x: 600,
-                y: 200
-              }
-            ]
-          }
-        ]
+        lines: storeERD.state.lines
       }
     },
     computed: {

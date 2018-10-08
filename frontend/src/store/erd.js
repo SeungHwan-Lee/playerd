@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {guid, getData} from '@/js/common'
-import {mysql5_7} from "./dataType"
+import {mysql5_7} from './dataType'
+import ERD from '@/js/ERD'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,7 @@ export default new Vuex.Store({
       }
     ],
     tables: [],
-    lines:[]
+    lines: []
   },
   mutations: {
     // 테이블 추가
@@ -97,8 +98,30 @@ export default new Vuex.Store({
       state.tables.forEach(v => {
         v.ui.selected = data.id === v.id;
       })
+      // column 선택 제거
       if(data.onlyTableSelected) {
         columnSelectedNone(state)
+      }
+      // line drawing 시작
+      if(ERD.core.event.isCursor && !ERD.core.event.isDraw) {
+        const table = getData(state.tables, data.id)
+        const id = guid()
+        this.state.lines.push({
+          id: id,
+          points: [
+            {
+              id: data.id,
+              x: table.ui.left,
+              y: table.ui.top
+            },
+            {
+              id: null,
+              x: table.ui.left,
+              y: table.ui.top
+            }
+          ]
+        })
+        ERD.core.event.startCursor(id)
       }
     },
     // column 선택
@@ -121,6 +144,21 @@ export default new Vuex.Store({
       const table = getData(state.tables, data.id)
       table.ui.top = data.top
       table.ui.left = data.left
+    },
+    // line mousemove drawing
+    lineDraw(state, data) {
+      const line = getData(state.lines, data.id)
+      line.points[1].x = data.x
+      line.points[1].y = data.y
+    },
+    // line 제거
+    deleteLine(state, data) {
+      for (let i in state.lines) {
+        if (data.id === state.lines[i].id) {
+          state.lines.splice(i, 1)
+          break
+        }
+      }
     }
   }
 })

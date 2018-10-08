@@ -44,7 +44,11 @@
             })
             break
           case 'erd-0-1-N':
-            ERD.core.event.cursor(type)
+            if(ERD.core.event.isCursor) {
+              ERD.core.event.cursor()
+            }else {
+              ERD.core.event.cursor(type)
+            }
             break
         }
       }
@@ -72,7 +76,6 @@
           && offset.left <= e.clientX
           && e.clientX <= offset.left + offset.width)) {
           $el.hide()
-          ERD.core.event.cursor()
         }
       }.bind(this.$el))
     }

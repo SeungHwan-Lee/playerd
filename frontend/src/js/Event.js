@@ -1,3 +1,5 @@
+import storeERD from '@/store/erd'
+
 /**
  * 이벤트 클래스
  */
@@ -7,6 +9,10 @@ class Event {
 
     this.core = null
     this.rightClickListener = []
+    this.isCursor = false
+    this.isDraw = false
+    this.eventTarget = null
+    this.lineId = null
     this.setEvent()
   }
 
@@ -59,11 +65,46 @@ class Event {
 
   // 전역 커서 설정
   cursor(type) {
-    if(type) {
+    if (type) {
       $('body').css('cursor', `url("/static/images/erd/${type}.png") 16 16, auto`)
-    }else {
+      this.isCursor = true
+    } else {
       $('body').removeAttr('style')
+      this.isCursor = false
+      if (this.isDraw) {
+        this.endCursor()
+      }
     }
+  }
+
+  // 연결 시작
+  startCursor(id) {
+    this.lineId = id
+    this.eventTarget = this.mouseMove.bind({
+      id: id
+    })
+    $(document).mousemove(this.eventTarget)
+    this.isDraw = true
+  }
+
+  // 연결 종료
+  endCursor() {
+    $(document).off('mousemove', this.eventTarget)
+    this.isDraw = false
+    storeERD.commit({
+      type: 'deleteLine',
+      id: this.lineId
+    })
+  }
+
+  // 마우스 이동 콜백
+  mouseMove(e) {
+    storeERD.commit({
+      type: 'lineDraw',
+      id: this.id,
+      x: e.clientX,
+      y: e.clientY
+    })
   }
 
 }
