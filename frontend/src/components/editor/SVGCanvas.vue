@@ -1,5 +1,5 @@
 <template lang="pug">
-  svg#svg(width="100%" height="100%")
+  svg#svg_canvas
     path(v-for="line in toLines" :d="line.points" stroke-dasharray="10,10" stroke-width="3" stroke="#dda8b1" fill="transparent")
 </template>
 
@@ -33,7 +33,9 @@
 </script>
 
 <style lang="scss" scoped>
-  #svg {
-    position: fixed;
+  #svg_canvas {
+    width: 5000px;
+    height: 5000px;
+    position: absolute;
   }
 </style>

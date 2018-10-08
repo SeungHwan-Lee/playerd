@@ -55,16 +55,14 @@
 <style lang="scss" scoped>
   .menuBar {
     display: flex;
+    position: fixed;
     justify-content: space-between;
-    max-width: 800px;
+
+    left: 50%;
+    margin-left: -400px;
     min-width: 800px;
-    /*padding: 5px 10px;*/
     background-color: #434343;
-    clear: both;
     box-sizing: border-box;
-    /*height: 42px;*/
-    margin: 0 auto;
-    /*box-shadow: 0px 1px 6px #bcbcbc;*/
     z-index: 100;
     opacity: 0.9;
 

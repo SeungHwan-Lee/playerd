@@ -1,5 +1,5 @@
 <template lang="pug">
-  transition-group(name="slide-fade" tag="div")
+  transition-group#main_canvas(name="slide-fade" tag="div")
     .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)" :table_id="table.id")
 
       .erd_table_top
@@ -128,78 +128,83 @@
   $key-fk: #ff6680;
   $key-pfk: #003366;
 
-  .erd_table {
-    width: 692px;
-    position: absolute;
-    box-sizing: border-box;
-    background-color: $tbg;
-    opacity: 0.9;
-    cursor: move;
-    padding: 10px;
-    z-index: 1;
+  #main_canvas {
+    width: 5000px;
+    height: 5000px;
 
-    .erd_table_top {
-      height: 15px;
-    }
-
-    .erd_table_header {
+    .erd_table {
+      width: 692px;
+      position: absolute;
       box-sizing: border-box;
-      margin-bottom: 15px;
+      background-color: $tbg;
+      opacity: 0.9;
+      cursor: move;
+      padding: 10px;
+      z-index: 1;
 
-      button {
-        margin-right: 5px;
-      }
-      input {
-        width: 41%;
-        height: 100%;
-        font-size: 20px;
-        margin-right: 10px;
-      }
-    }
-
-    .erd_column {
-      overflow: hidden;
-
-      input, div {
-        float: left;
-        margin-right: 10px;
-        margin-bottom: 2px;
-      }
-      .erd_column_not_null {
-        width: 45px;
-        cursor: pointer;
-      }
-      button {
-        padding: 0;
-        width: 25px;
-        height: 25px;
+      .erd_table_top {
+        height: 15px;
       }
 
-      /* column key */
-      .erd_column_key {
-        width: 16px;
-        color: $tbg;
-      }
-      .pk {
-        color: $key-pk;
-      }
-      .fk {
-        color: $key-fk;
-      }
-      .pfk {
-        color: $key-pfk;
+      .erd_table_header {
+        box-sizing: border-box;
+        margin-bottom: 15px;
+
+        button {
+          margin-right: 5px;
+        }
+        input {
+          width: 41%;
+          height: 100%;
+          font-size: 20px;
+          margin-right: 10px;
+        }
       }
 
-      /* 컬럼 선택시 */
+      .erd_column {
+        overflow: hidden;
+
+        input, div {
+          float: left;
+          margin-right: 10px;
+          margin-bottom: 2px;
+        }
+        .erd_column_not_null {
+          width: 45px;
+          cursor: pointer;
+        }
+        button {
+          padding: 0;
+          width: 25px;
+          height: 25px;
+        }
+
+        /* column key */
+        .erd_column_key {
+          width: 16px;
+          color: $tbg;
+        }
+        .pk {
+          color: $key-pk;
+        }
+        .fk {
+          color: $key-fk;
+        }
+        .pfk {
+          color: $key-pfk;
+        }
+
+        /* 컬럼 선택시 */
+        &.selected {
+          border: solid #383d41 1px;
+        }
+      }
+
+      /* 테이블 선택시 */
       &.selected {
-        border: solid #383d41 1px;
+        border: solid $ts 1px;
+        box-shadow: 0 1px 6px $ts;
       }
-    }
-
-    /* 테이블 선택시 */
-    &.selected {
-      border: solid $ts 1px;
-      box-shadow: 0 1px 6px $ts;
     }
   }
 

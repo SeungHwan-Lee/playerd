@@ -36,11 +36,9 @@
 
   .erd {
     display: flex;
-    position: fixed;
     flex-direction: column;
-    width: 100%;
+    width: 5000px;
     height: 100%;
-    overflow-y: scroll;
     z-index: 2;
     background-color: #282828;
   }
