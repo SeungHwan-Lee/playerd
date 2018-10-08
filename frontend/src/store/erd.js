@@ -122,6 +122,13 @@ export default new Vuex.Store({
           ]
         })
         ERD.core.event.startCursor(id)
+
+      // line drawing 종료
+      }else if(ERD.core.event.isDraw) {
+        const line = getData(state.lines, ERD.core.event.lineId)
+        if(data.id !== line.points[0].id) {
+          ERD.core.event.endCursor(data.id)
+        }
       }
     },
     // column 선택
@@ -144,12 +151,22 @@ export default new Vuex.Store({
       const table = getData(state.tables, data.id)
       table.ui.top = data.top
       table.ui.left = data.left
+      // line 업데이트
+      this.state.lines.forEach(line => {
+        line.points.forEach(v => {
+          if(v.id === data.id) {
+            v.x = data.left
+            v.y = data.top
+          }
+        })
+      })
     },
-    // line mousemove drawing
+    // line drawing
     lineDraw(state, data) {
       const line = getData(state.lines, data.id)
       line.points[1].x = data.x
       line.points[1].y = data.y
+      if(data.tableId) line.points[1].id = data.tableId
     },
     // line 제거
     deleteLine(state, data) {

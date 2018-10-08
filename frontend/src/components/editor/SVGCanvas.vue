@@ -1,6 +1,6 @@
 <template lang="pug">
   svg#svg(width="100%" height="100%")
-    path(v-for="line in toLines" :d="line.points" stroke="red" fill="transparent")
+    path(v-for="line in toLines" :d="line.points" stroke-dasharray="10,10" stroke-width="3" stroke="#dda8b1" fill="transparent")
 </template>
 
 <script>

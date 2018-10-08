@@ -1,4 +1,5 @@
 import storeERD from '@/store/erd'
+import {getData} from '@/js/common'
 
 /**
  * 이벤트 클래스
@@ -88,13 +89,26 @@ class Event {
   }
 
   // 연결 종료
-  endCursor() {
+  endCursor(id) {
     $(document).off('mousemove', this.eventTarget)
     this.isDraw = false
-    storeERD.commit({
-      type: 'deleteLine',
-      id: this.lineId
-    })
+    if(id) {
+      const table = getData(storeERD.state.tables, id)
+      storeERD.commit({
+        type: 'lineDraw',
+        id: this.lineId,
+        x: table.ui.left,
+        y: table.ui.top,
+        tableId: id
+      })
+      this.cursor()
+    }else {
+      storeERD.commit({
+        type: 'deleteLine',
+        id: this.lineId
+      })
+    }
+    this.lineId = null
   }
 
   // 마우스 이동 콜백
