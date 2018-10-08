@@ -1,9 +1,10 @@
 <template lang="pug">
   .erd
-    TopMenu
-    TableMenu
-    MainCanvas
-    SVGCanvas
+    top-menu
+    table-menu
+    canvas-menu
+    canvas-main
+    canvas-svg
 </template>
 
 <script>
@@ -11,16 +12,18 @@
   import '@/js/ERD'
   import TopMenu from './TopMenu'
   import TableMenu from './TableMenu'
-  import MainCanvas from './MainCanvas'
-  import SVGCanvas from './SVGCanvas'
+  import CanvasMenu from './CanvasMenu'
+  import CanvasMain from './CanvasMain'
+  import CanvasSvg from './CanvasSvg'
 
   export default {
     name: 'ERD',
     components: {
       TopMenu,
       TableMenu,
-      MainCanvas,
-      SVGCanvas
+      CanvasMenu,
+      CanvasMain,
+      CanvasSvg
     }
   }
 </script>

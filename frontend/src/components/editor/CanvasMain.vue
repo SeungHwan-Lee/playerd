@@ -33,7 +33,7 @@
   import {getZIndex} from '@/js/common'
 
   export default {
-    name: 'MainCanvas',
+    name: 'CanvasMain',
     components: {
       DataType,
       draggable

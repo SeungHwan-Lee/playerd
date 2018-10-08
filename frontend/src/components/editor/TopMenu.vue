@@ -1,5 +1,5 @@
 <template lang="pug">
-  .menuBar
+  #menu_bar
     b-button(@click="addTable")
       font-awesome-icon(icon="table")
     .dbType
@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import storeERD from '../../store/erd'
+  import storeERD from '@/store/erd'
   import {BasicSelect} from 'vue-search-select'
 
   export default {
@@ -53,7 +53,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .menuBar {
+  #menu_bar {
     display: flex;
     position: fixed;
     justify-content: space-between;
@@ -63,7 +63,7 @@
     min-width: 800px;
     background-color: #434343;
     box-sizing: border-box;
-    z-index: 100;
+    z-index: 2147483647;
     opacity: 0.9;
 
     .dbType {

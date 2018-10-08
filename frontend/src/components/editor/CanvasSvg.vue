@@ -7,7 +7,7 @@
   import storeERD from '@/store/erd'
 
   export default {
-    name: "SVGCanvas",
+    name: "CanvasSvg",
     data() {
       return {
         lines: storeERD.state.lines

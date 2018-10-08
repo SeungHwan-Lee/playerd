@@ -1,5 +1,5 @@
 <template lang="pug">
-  ul.menu
+  ul.menuTable
     li(v-for="menu in menus" :key="menu.id" @click="menuAction(menu.type)")
       span
         img(:src="menu.icon" v-if="menu.icon !== ''")
@@ -84,7 +84,7 @@
 
 <style lang="scss" scoped>
   $mbg: #191919;
-  .menu {
+  .menuTable {
     color: #a2a2a2;
     background-color: $mbg;
     position: fixed;
