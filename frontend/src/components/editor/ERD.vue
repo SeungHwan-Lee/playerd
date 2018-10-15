@@ -1,6 +1,5 @@
 <template lang="pug">
-  .erd
-    top-menu
+  #erd
     table-menu
     canvas-menu
     canvas-main
@@ -10,7 +9,6 @@
 <script>
   import '@/css/erd.css'
   import '@/js/ERD'
-  import TopMenu from './TopMenu'
   import TableMenu from './TableMenu'
   import CanvasMenu from './CanvasMenu'
   import CanvasMain from './CanvasMain'
@@ -19,7 +17,6 @@
   export default {
     name: 'ERD',
     components: {
-      TopMenu,
       TableMenu,
       CanvasMenu,
       CanvasMain,
@@ -37,11 +34,11 @@
     font-size: 12px;
   }
 
-  .erd {
+  #erd {
     display: flex;
     flex-direction: column;
     width: 5000px;
-    height: 100%;
+    height: 5000px;
     z-index: 2;
     background-color: #282828;
   }

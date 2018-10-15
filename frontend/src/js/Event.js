@@ -14,6 +14,7 @@ class Event {
     this.isDraw = false
     this.eventTarget = null
     this.lineId = null
+
     this.setEvent()
   }
 
@@ -116,8 +117,8 @@ class Event {
     storeERD.commit({
       type: 'lineDraw',
       id: this.id,
-      x: e.clientX,
-      y: e.clientY
+      x: e.clientX+document.documentElement.scrollLeft,
+      y: e.clientY+document.documentElement.scrollTop
     })
   }
 

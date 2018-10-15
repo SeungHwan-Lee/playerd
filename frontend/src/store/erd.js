@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {guid, getData} from '@/js/common'
-import {mysql5_7} from './dataType'
+import {MySQL} from './dataType'
 import ERD from '@/js/ERD'
 
 Vue.use(Vuex)
@@ -9,12 +9,15 @@ Vue.use(Vuex)
 // ERD 데이터
 export default new Vuex.Store({
   state: {
-    DBType: 'mysql5.7',
+    DBType: 'MySQL',
     DBTypes: [
       {
-        value: 'mysql5.7',
-        text: 'MySQL 5.7',
-        dataTypes: mysql5_7.dataTypes
+        value: 'MySQL',
+        dataTypes: MySQL.dataTypes
+      },
+      {
+        value: 'Oracle',
+        dataTypes: []
       }
     ],
     tables: [],
@@ -30,8 +33,8 @@ export default new Vuex.Store({
         columns: [],
         ui: {
           selected: false,
-          top: 0,
-          left: 0
+          top: document.documentElement.scrollTop+100,
+          left: document.documentElement.scrollLeft+200
         }
       })
     },

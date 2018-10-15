@@ -1,6 +1,7 @@
 <template lang="pug">
   transition-group#main_canvas(name="slide-fade" tag="div")
-    .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)" :table_id="table.id")
+    .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)" :table_id="table.id"
+    :style="`top: ${table.ui.top}px; left: ${table.ui.left}px;`")
 
       .erd_table_top
       .erd_table_header
@@ -30,7 +31,7 @@
   import storeERD from '@/store/erd'
   import DataType from './DataType'
   import draggable from 'vuedraggable'
-  import {getZIndex} from '@/js/common'
+  import {setZIndex} from '@/js/common'
 
   export default {
     name: 'CanvasMain',
@@ -47,7 +48,7 @@
     methods: {
       // 컬럼 추가
       addColumn(id) {
-        JSLog('MainCanvas', 'addColumn', id)
+        JSLog('CanvasMain', 'addColumn', id)
         storeERD.commit({
           type: 'addColumn',
           id: id
@@ -55,7 +56,7 @@
       },
       // 컬럼 삭제
       deleteColumn(tableId, columnId) {
-        JSLog('MainCanvas', 'deleteColumn', tableId, columnId)
+        JSLog('CanvasMain', 'deleteColumn', tableId, columnId)
         storeERD.commit({
           type: 'deleteColumn',
           tableId: tableId,
@@ -72,7 +73,7 @@
       },
       // 테이블 삭제
       deleteTable(id) {
-        JSLog('MainCanvas', 'deleteTable', id)
+        JSLog('CanvasMain', 'deleteTable', id)
         storeERD.commit({
           type: 'deleteTable',
           id: id
@@ -80,7 +81,7 @@
       },
       // 테이블 선택
       tableSelected(id) {
-        JSLog('MainCanvas', 'tableSelected', id)
+        JSLog('CanvasMain', 'tableSelected', id)
         storeERD.commit({
           type: 'tableSelected',
           id: id,
@@ -90,7 +91,7 @@
       },
       // 컬럼 선택
       columnSelected(tableId, columnId) {
-        JSLog('MainCanvas', 'columnSelected', tableId, columnId)
+        JSLog('CanvasMain', 'columnSelected', tableId, columnId)
         storeERD.commit({
           type: 'columnSelected',
           tableId: tableId,
@@ -110,13 +111,8 @@
             left: ui.offset.left
           })
         }
-      }).off('mousedown', zIndex).mousedown(zIndex)
+      }).off('mousedown', setZIndex).mousedown(setZIndex)
     }
-  }
-
-  // z-index 콜백 함수
-  function zIndex() {
-    $(this).css('z-index', getZIndex('.erd_table'))
   }
 </script>
 

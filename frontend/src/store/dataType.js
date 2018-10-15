@@ -1,6 +1,6 @@
 // mysql5.7 dataType
-export const mysql5_7 = {
-  name: 'mysql5.7',
+export const MySQL = {
+  name: 'MySQL',
   dataTypes: [
     // 숫자
     {

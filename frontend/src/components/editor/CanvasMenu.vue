@@ -1,57 +1,51 @@
 <template lang="pug">
   div.menuCanvas
-    canvas#menu_canvas
+    canvas#menu_canvas(@click="menu")
+    select.dbType(@change="selectDB")
+      option(v-for="DBType in DBTypes" :value="DBType") {{ DBType }}
+    b-button.addTable(@click="addTable")
+      font-awesome-icon(icon="table")
 </template>
 
 <script>
+  import storeERD from '@/store/erd'
+  import menu from '@/js/THREE_menu'
+
   export default {
-    name: "CanvasMenu",
+    name: 'CanvasMenu',
+    data() {
+      return {
+        DBTypes: ['MySQL', 'Oracle'],
+        menuCheck: false
+      }
+    },
+    methods: {
+      // 테이블 추가
+      addTable() {
+        JSLog('CanvasMenu', 'addTable')
+        storeERD.commit({type: 'addTable'})
+      },
+      // DB 선택
+      selectDB(e) {
+        JSLog('CanvasMenu', 'selectDB')
+        storeERD.commit({
+          type: 'changeDB',
+          DBType: e.target.value
+        })
+      },
+      menu() {
+        if(this.menuCheck) {
+          $('.menuCanvas').children().eq(1).hide()
+            .end().eq(2).hide()
+        }else {
+          $('.menuCanvas').children().eq(1).show()
+            .end().eq(2).show()
+        }
+        this.menuCheck = !this.menuCheck
+      }
+    },
     mounted() {
-      var camera, scene, renderer
-      var geometry, material, mesh, light, light1
-
-      init()
-      animate()
-
-      function init() {
-        //RENDERER
-        renderer = new THREE.WebGLRenderer({canvas: document.getElementById('menu_canvas'), antialias: true});
-        renderer.setClearColor(0x282828);
-
-        //CAMERA
-        camera = new THREE.PerspectiveCamera(10, 1, 0.1, 3000);
-
-        //SCENE
-        scene = new THREE.Scene();
-
-        //LIGHTS
-        light = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(light);
-
-        light1 = new THREE.PointLight(0xffffff, 0.5);
-        scene.add(light1);
-
-        //OBJECT
-        var radius = 85;
-        var geometry1 = new THREE.IcosahedronBufferGeometry( radius, 1 );
-
-        geometry = new THREE.CubeGeometry(100, 100, 100);
-
-        material = new THREE.MeshLambertMaterial({color: 0x429db3});
-        mesh = new THREE.Mesh(geometry1, material);
-        mesh.position.set(0, 0, -1000);
-
-        scene.add(mesh);
-      }
-
-      function animate() {
-        requestAnimationFrame(animate)
-
-        mesh.rotation.x += 0.02
-        mesh.rotation.y += 0.02
-
-        renderer.render(scene, camera)
-      }
+      menu()
     }
   }
 </script>
@@ -64,6 +58,22 @@
       width: 100px;
       height: 100px;
       position: fixed;
+      z-index: 2147483647;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    .dbType {
+      position: fixed;
+      z-index: 2147483647;
+      left: 110px;
+      display: none;
+    }
+    .addTable {
+      position: fixed;
+      z-index: 2147483647;
+      top: 40px;
+      left: 110px;
+      display: none;
     }
   }
 </style>

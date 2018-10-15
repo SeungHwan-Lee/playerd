@@ -66,4 +66,9 @@ export const getZIndex = el => {
   return ++max
 }
 
+// z-index 콜백 함수
+export const setZIndex = function() {
+  $(this).css('z-index', getZIndex('.erd_table'))
+}
+
 //==================== ERD END ====================

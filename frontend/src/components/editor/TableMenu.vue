@@ -68,8 +68,13 @@
       $(document).on('mousedown', function (e) {
         const $el = $(this)
         let offset = $el.offset()
+        offset.top -= document.documentElement.scrollTop
+        offset.left -= document.documentElement.scrollLeft
         offset.width = $el.width()
         offset.height = $el.height()
+
+        JSLog(`top:${offset.top}, left:${offset.left}`)
+        JSLog(`e.clientX:${e.clientX}, e.clientY:${e.clientY}`)
 
         if (!(offset.top <= e.clientY
           && e.clientY <= offset.top + offset.height
