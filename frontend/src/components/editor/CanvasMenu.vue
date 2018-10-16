@@ -1,9 +1,9 @@
 <template lang="pug">
   div.menuCanvas
     canvas#menu_canvas(@click="menu")
-    select.dbType(@change="selectDB")
+    select.dbType(@change="selectDB" v-if="menuCheck")
       option(v-for="DBType in DBTypes" :value="DBType") {{ DBType }}
-    b-button.addTable(@click="addTable")
+    b-button.addTable(@click="addTable" v-if="menuCheck")
       font-awesome-icon(icon="table")
 </template>
 
@@ -33,14 +33,8 @@
           DBType: e.target.value
         })
       },
+      // 메뉴 show, hide
       menu() {
-        if(this.menuCheck) {
-          $('.menuCanvas').children().eq(1).hide()
-            .end().eq(2).hide()
-        }else {
-          $('.menuCanvas').children().eq(1).show()
-            .end().eq(2).show()
-        }
         this.menuCheck = !this.menuCheck
       }
     },
@@ -66,14 +60,12 @@
       position: fixed;
       z-index: 2147483647;
       left: 110px;
-      display: none;
     }
     .addTable {
       position: fixed;
       z-index: 2147483647;
       top: 40px;
       left: 110px;
-      display: none;
     }
   }
 </style>

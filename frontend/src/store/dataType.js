@@ -1,6 +1,5 @@
 // mysql5.7 dataType
-export const MySQL = {
-  name: 'MySQL',
+const MySQL = {
   dataTypes: [
     // 숫자
     {
@@ -136,4 +135,9 @@ export const MySQL = {
       type: 'String'
     }
   ]
+}
+
+export default {
+  MySQL: MySQL.dataTypes,
+  Oracle: []
 }

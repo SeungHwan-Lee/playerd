@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {guid, getData} from '@/js/common'
-import {MySQL} from './dataType'
+import dataType from './dataType'
 import ERD from '@/js/ERD'
 
 Vue.use(Vuex)
@@ -10,16 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     DBType: 'MySQL',
-    DBTypes: [
-      {
-        value: 'MySQL',
-        dataTypes: MySQL.dataTypes
-      },
-      {
-        value: 'Oracle',
-        dataTypes: []
-      }
-    ],
+    DBTypes: dataType.MySQL,
     tables: [],
     lines: []
   },
@@ -79,6 +70,10 @@ export default new Vuex.Store({
           break
         }
       }
+      // 데이터타입 힌트 이벤트 삭제
+      ERD.core.event.removeDataTypeHintVisible(data.columnId)
+      // 데이터 타입 이벤트 삭제
+      ERD.core.event.removeDataTypes(data.columnId)
     },
     // NULL 조건 변경
     changeNull(state, data) {
@@ -95,6 +90,8 @@ export default new Vuex.Store({
     // DB 변경
     changeDB(state, data) {
       state.DBType = data.DBType
+      state.DBTypes = dataType[data.DBType]
+      ERD.core.event.onDataTypes(dataType[data.DBType])
     },
     // table 선택
     tableSelected(state, data) {

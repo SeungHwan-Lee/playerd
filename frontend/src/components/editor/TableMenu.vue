@@ -73,9 +73,6 @@
         offset.width = $el.width()
         offset.height = $el.height()
 
-        JSLog(`top:${offset.top}, left:${offset.left}`)
-        JSLog(`e.clientX:${e.clientX}, e.clientY:${e.clientY}`)
-
         if (!(offset.top <= e.clientY
           && e.clientY <= offset.top + offset.height
           && offset.left <= e.clientX
