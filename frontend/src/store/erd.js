@@ -10,7 +10,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     DBType: 'MySQL',
-    DBTypes: dataType.MySQL,
     tables: [],
     lines: []
   },
@@ -54,7 +53,9 @@ export default new Vuex.Store({
                 pk: false,
                 fk: false,
                 pfk: false
-              }
+              },
+              isDataTypeHint: false,
+              dataTypes: dataType.MySQL
             }
           })
           break
@@ -70,10 +71,6 @@ export default new Vuex.Store({
           break
         }
       }
-      // 데이터타입 힌트 이벤트 삭제
-      ERD.core.event.removeDataTypeHintVisible(data.columnId)
-      // 데이터 타입 이벤트 삭제
-      ERD.core.event.removeDataTypes(data.columnId)
     },
     // NULL 조건 변경
     changeNull(state, data) {
@@ -81,17 +78,10 @@ export default new Vuex.Store({
       const column = getData(table.columns, data.columnId)
       column.isNull = !column.isNull
     },
-    // 데이터타입 변경
-    changeDataType(state, data) {
-      const table = getData(state.tables, data.tableId)
-      const column = getData(table.columns, data.columnId)
-      column.dataType = data.dataType
-    },
     // DB 변경
     changeDB(state, data) {
       state.DBType = data.DBType
-      state.DBTypes = dataType[data.DBType]
-      ERD.core.event.onDataTypes(dataType[data.DBType])
+      setDataTypes(state, dataType[data.DBType])
     },
     // table 선택
     tableSelected(state, data) {
@@ -145,6 +135,12 @@ export default new Vuex.Store({
           setColumnKey(state, data.key)
           break
       }
+    },
+    // 데이터타입 힌트 show/hide
+    dataTypeHintVisible(state, data) {
+      const table = getData(state.tables, data.tableId)
+      const column = getData(table.columns, data.columnId)
+      column.ui.isDataTypeHint = data.isDataTypeHint
     },
     // table top, left 변경
     tableTracker(state, data) {
@@ -202,6 +198,15 @@ function setColumnKey(state, key) {
     }
     if(check) {
       break
+    }
+  }
+}
+
+// dataType 변경
+function setDataTypes(state, dataTypes) {
+  for(let table of state.tables) {
+    for(let column of table.columns) {
+      column.ui.dataTypes = dataTypes
     }
   }
 }

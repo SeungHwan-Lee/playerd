@@ -10,8 +10,6 @@ class Event {
 
     this.core = null
     this.rightClickListener = []
-    this.dataTypeHintVisibleListener = []
-    this.dataTypesListener = []
     this.isCursor = false
     this.isDraw = false
     this.eventTarget = null
@@ -38,66 +36,6 @@ class Event {
     //   e.returnValue = dialogText;
     //   return dialogText;
     // }
-    // 데이터 타입 힌트 hide
-    $(document).on('mousedown', function (e) {
-      if (!$(e.target).closest('.dataTypeList').length) {
-        this.onDataTypeHintVisible(false)
-      }
-    }.bind(this))
-  }
-
-  // 데이터 타입 이벤트 추가
-  addDataTypes(fn, id) {
-    this.dataTypesListener.push({
-      fn: fn,
-      id: id
-    })
-  }
-
-  // 데이터 타입 이벤트 삭제
-  removeDataTypes(id) {
-    for (let i in this.dataTypesListener) {
-      if (id === this.dataTypesListener[i].id) {
-        this.dataTypesListener.splice(i, 1)
-        break
-      }
-    }
-  }
-
-  // 데이터 타입 이벤트 실행
-  onDataTypes(dataTypes) {
-    JSLog('initialize', 'onDataTypes')
-    JSLog('to', this.dataTypesListener)
-    this.dataTypesListener.forEach(v => {
-      if (typeof v.fn === 'function') v.fn(dataTypes)
-    })
-  }
-
-  // 데이터 타입 힌트 이벤트 추가
-  addDataTypeHintVisible(fn, id) {
-    this.dataTypeHintVisibleListener.push({
-      fn: fn,
-      id: id
-    })
-  }
-
-  // 데이터 타입 힌트 이벤트 삭제
-  removeDataTypeHintVisible(id) {
-    for (let i in this.dataTypeHintVisibleListener) {
-      if (id === this.dataTypeHintVisibleListener[i].id) {
-        this.dataTypeHintVisibleListener.splice(i, 1)
-        break
-      }
-    }
-  }
-
-  // 데이터 타입 힌트 이벤트 실행
-  onDataTypeHintVisible(isDataTypeHint) {
-    JSLog('initialize', 'onDataTypeHintVisible')
-    JSLog('to', this.dataTypeHintVisibleListener)
-    this.dataTypeHintVisibleListener.forEach(v => {
-      if (typeof v.fn === 'function') v.fn(isDataTypeHint)
-    })
   }
 
   // 오른쪽 클릭 이벤트 추가

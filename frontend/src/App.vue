@@ -29,7 +29,7 @@
     font-size: 100%;
   }
 
-  ol, ul {
+  ol, ul, li {
     list-style: none;
   }
 

@@ -19,7 +19,12 @@
             .erd_column_key(:class="{ pk: column.ui.key.pk, fk: column.ui.key.fk, pfk: column.ui.key.pfk }")
               font-awesome-icon(icon="key")
             input(type="text" placeholder="column" v-model="column.name")
-            data-type(:tableId="table.id" :columnId="column.id")
+
+            div
+              input(type="text" placeholder="dataType" v-model="column.dataType" @keydown="dataTypeHintVisible(table.id, column.id, true)" @blur="dataTypeHintVisible(table.id, column.id, false)")
+              ul.data_type_list(v-if="column.ui.isDataTypeHint")
+                li(v-for="dataTyp in column.ui.dataTypes") {{ dataTyp.name }}
+
             input.erd_column_not_null(type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull")
             input.erd_column_not_null(type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else)
             input(type="text" placeholder="comment" v-model="column.comment")
@@ -29,14 +34,12 @@
 
 <script>
   import storeERD from '@/store/erd'
-  import DataType from './DataType'
   import draggable from 'vuedraggable'
   import {setZIndex} from '@/js/common'
 
   export default {
     name: 'CanvasMain',
     components: {
-      DataType,
       draggable
     },
     data() {
@@ -98,6 +101,15 @@
           columnId: columnId
         })
         this.onlyTableSelected = false
+      },
+      // 데이터타입 힌트 show/hide
+      dataTypeHintVisible(tableId, columnId, isDataTypeHint) {
+        storeERD.commit({
+          type: 'dataTypeHintVisible',
+          tableId: tableId,
+          columnId: columnId,
+          isDataTypeHint: isDataTypeHint
+        })
       }
     },
     updated() {
@@ -173,6 +185,25 @@
           padding: 0;
           width: 25px;
           height: 25px;
+        }
+
+        // 데이터 타입 힌트
+        .data_type_list {
+          width: 168px;
+          position: absolute;
+          color: #a2a2a2;
+          background-color: #191919;
+          opacity: 0.9;
+          margin-top: 20px;
+
+          li {
+            cursor: pointer;
+
+            &:hover {
+              color: white;
+              background-color: #383d41;
+            }
+          }
         }
 
         /* column key */
