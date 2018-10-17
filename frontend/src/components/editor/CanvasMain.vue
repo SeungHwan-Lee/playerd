@@ -1,8 +1,10 @@
 <template lang="pug">
   transition-group#main_canvas(name="slide-fade" tag="div")
+    // 테이블
     .erd_table(:class="{ selected: table.ui.selected}" v-for="table in tables" :key="table.id" @mousedown="tableSelected(table.id)" :table_id="table.id"
     :style="`top: ${table.ui.top}px; left: ${table.ui.left}px;`")
 
+      // 테이블 해더
       .erd_table_top
       .erd_table_header
         input(type="text" placeholder="table" v-model="table.name")
@@ -14,20 +16,30 @@
 
       draggable(v-model="table.columns" :options="{group:'table'}")
         transition-group(name="slide-fade" tag="div")
+          // 컬럼
           .erd_column(v-for="column in table.columns" :key="column.id" :class="{ selected: column.ui.selected}" @mousedown="columnSelected(table.id, column.id)")
 
+            // key
             .erd_column_key(:class="{ pk: column.ui.key.pk, fk: column.ui.key.fk, pfk: column.ui.key.pfk }")
               font-awesome-icon(icon="key")
+
+            // 컬럼 이름
             input(type="text" placeholder="column" v-model="column.name")
 
+            // 컬럼 데이터타입
             div
-              input(type="text" placeholder="dataType" v-model="column.dataType" @keydown="dataTypeHintVisible(table.id, column.id, true)" @blur="dataTypeHintVisible(table.id, column.id, false)")
+              input(type="text" placeholder="dataType" v-model="column.dataType" @keydown="dataTypeHintVisible(table.id, column.id, true)")
               ul.data_type_list(v-if="column.ui.isDataTypeHint")
                 li(v-for="dataTyp in column.ui.dataTypes") {{ dataTyp.name }}
 
+            // 컬럼 not-null
             input.erd_column_not_null(type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull")
             input.erd_column_not_null(type="text" readonly value="N-N" @click="changeNull(table.id, column.id)" v-else)
+
+            // 컬럼 comment
             input(type="text" placeholder="comment" v-model="column.comment")
+
+            // 컬럼 삭제 버튼
             b-button(variant="outline-danger" @click="deleteColumn(table.id, column.id)")
               font-awesome-icon(icon="times")
 </template>
@@ -35,7 +47,7 @@
 <script>
   import storeERD from '@/store/erd'
   import draggable from 'vuedraggable'
-  import {setZIndex} from '@/js/common'
+  import {setZIndex, setDataTypeHint} from '@/js/common'
 
   export default {
     name: 'CanvasMain',
@@ -124,6 +136,8 @@
           })
         }
       }).off('mousedown', setZIndex).mousedown(setZIndex)
+      // 데이터 타입 힌트 hide
+      $(document).off('mousedown', setDataTypeHint).on('mousedown', setDataTypeHint)
     }
   }
 </script>
@@ -187,7 +201,7 @@
           height: 25px;
         }
 
-        // 데이터 타입 힌트
+        /* 데이터 타입 힌트 */
         .data_type_list {
           width: 168px;
           position: absolute;

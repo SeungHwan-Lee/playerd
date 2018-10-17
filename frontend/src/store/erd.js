@@ -142,6 +142,10 @@ export default new Vuex.Store({
       const column = getData(table.columns, data.columnId)
       column.ui.isDataTypeHint = data.isDataTypeHint
     },
+    // 데이터타입 힌트 show/hide ALL
+    dataTypeHintVisibleAll(state, data) {
+      setDataTypeHint(state, data.isDataTypeHint)
+    },
     // table top, left 변경
     tableTracker(state, data) {
       const table = getData(state.tables, data.id)
@@ -207,6 +211,15 @@ function setDataTypes(state, dataTypes) {
   for(let table of state.tables) {
     for(let column of table.columns) {
       column.ui.dataTypes = dataTypes
+    }
+  }
+}
+
+// 데이터타입 힌트 show/hide ALL
+function setDataTypeHint(state, isDataTypeHint) {
+  for(let table of state.tables) {
+    for(let column of table.columns) {
+      column.ui.isDataTypeHint = isDataTypeHint
     }
   }
 }

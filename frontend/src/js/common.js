@@ -71,4 +71,14 @@ export const setZIndex = function() {
   $(this).css('z-index', getZIndex('.erd_table'))
 }
 
+// dataTypeHint show/hide 콜백 함수
+export const setDataTypeHint = function(e) {
+  if (!$(e.target).closest('.data_type_list').length) {
+    storeERD.commit({
+      type: 'dataTypeHintVisibleAll',
+      isDataTypeHint: false
+    })
+  }
+}
+
 //==================== ERD END ====================
