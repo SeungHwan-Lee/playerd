@@ -36,6 +36,23 @@ export default new Vuex.Store({
           break
         }
       }
+      // line 삭제
+      for (let i=0; i<state.lines.length; i++) {
+        let check = false
+        for (let j in state.lines[i].points) {
+          if (data.id === state.lines[i].points[j].id) {
+            check = true
+            break
+          }
+        }
+        if(check) {
+          this.commit({
+            type: 'deleteLine',
+            id: state.lines[i].id
+          })
+          i--
+        }
+      }
     },
     // 컬럼 추가
     addColumn(state, data) {
@@ -96,7 +113,7 @@ export default new Vuex.Store({
       if(ERD.core.event.isCursor && !ERD.core.event.isDraw) {
         const table = getData(state.tables, data.id)
         const id = guid()
-        this.state.lines.push({
+        state.lines.push({
           id: id,
           points: [
             {
@@ -152,7 +169,7 @@ export default new Vuex.Store({
       table.ui.top = data.top
       table.ui.left = data.left
       // line 업데이트
-      this.state.lines.forEach(line => {
+      state.lines.forEach(line => {
         line.points.forEach(v => {
           if(v.id === data.id) {
             v.x = data.left
@@ -168,7 +185,7 @@ export default new Vuex.Store({
       line.points[1].y = data.y
       if(data.tableId) line.points[1].id = data.tableId
     },
-    // line 제거
+    // line 삭제
     deleteLine(state, data) {
       for (let i in state.lines) {
         if (data.id === state.lines[i].id) {

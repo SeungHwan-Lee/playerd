@@ -36,12 +36,6 @@ class Event {
     //   e.returnValue = dialogText;
     //   return dialogText;
     // }
-    // 데이터 타입 힌트 hide
-    $(document).on('mousedown', function (e) {
-      if (!$(e.target).closest('.data_type_list').length) {
-
-      }
-    }.bind(this))
   }
 
   // 오른쪽 클릭 이벤트 추가
