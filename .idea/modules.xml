@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erd.iml" filepath="$PROJECT_DIR$/.idea/modules/erd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erd_main.iml" filepath="$PROJECT_DIR$/.idea/modules/erd_main.iml" group="erd" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erd_test.iml" filepath="$PROJECT_DIR$/.idea/modules/erd_test.iml" group="erd" />
       <module fileurl="file://$PROJECT_DIR$/.idea/playerd.iml" filepath="$PROJECT_DIR$/.idea/playerd.iml" />
     </modules>
   </component>
