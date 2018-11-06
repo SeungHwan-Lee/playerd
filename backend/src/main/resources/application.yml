@@ -1,0 +1,115 @@
+########## default ##########
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    dbcp2:
+      test-on-borrow: true
+      validation-query: SELECT 1
+  mvc:
+    static-path-pattern: /res/**
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+server:
+  port: 3000
+  http2:
+    enabled: true
+  servlet:
+    context-path: /
+
+mybatis:
+  type-aliases-package: com.handy.erd
+  mapper-locations:
+  - mapper/*.xml
+
+logging:
+  level:
+    com.handy.erd: off
+    jdbc: off
+    jdbc.sqlonly: off
+    jdbc.sqltiming: off
+    jdbc.audit: off
+    jdbc.resultset: off
+    jdbc.resultsettable: off
+    jdbc.connection: off
+
+#handy config
+handy:
+  version: @timestamp@
+
+########## development ##########
+---
+spring:
+  profiles: dev
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:log4jdbc:h2:mem:erd
+    username: sa
+    password:
+
+#actuator
+management:
+  server:
+    port: 8000
+  endpoints:
+    web:
+      base-path: /app
+      exposure:
+        include:
+          - auditevents
+          - beans
+          - conditions
+          - configprops
+          - env
+          - flyway
+          - health
+          - heapdump
+          - info
+          - liquibase
+          - logfile
+          - loggers
+          - metrics
+          - prometheus
+          - scheduledtasks
+          - sessions
+          - shutdown
+          - threaddump
+#actuator info
+info:
+  app:
+    java:
+      version: @java.version@
+  build:
+    encoding: @project.build.sourceEncoding@
+    timestamp: @timestamp@
+  spring:
+    profiles: ${spring.profiles.active}
+
+logging:
+  level:
+    com.handy.erd: debug
+    jdbc.sqltiming: debug
+    jdbc.resultsettable: debug
+
+#handy config
+handy:
+  env: dev
+
+########## production ##########
+---
+spring:
+  profiles: prod
+  datasource:
+    url:
+    username:
+    password:
+    
+#handy config
+handy:
+  env: prod
