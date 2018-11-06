@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {guid, getData} from '@/js/common'
+import {guid, getData, getDataTypeSearch} from '@/js/common'
 import dataType from './dataType'
 import ERD from '@/js/ERD'
 
@@ -153,6 +153,12 @@ export default new Vuex.Store({
           break
       }
     },
+    // 데이터선택
+    changeColumnDataType(state, data) {
+      const table = getData(state.tables, data.tableId)
+      const column = getData(table.columns, data.columnId)
+      column.dataType = data.dataType
+    },
     // 데이터타입 힌트 show/hide
     dataTypeHintVisible(state, data) {
       const table = getData(state.tables, data.tableId)
@@ -162,6 +168,12 @@ export default new Vuex.Store({
     // 데이터타입 힌트 show/hide ALL
     dataTypeHintVisibleAll(state, data) {
       setDataTypeHint(state, data.isDataTypeHint)
+    },
+    // 데이터타입 검색
+    changeDataTypeHint(state, data) {
+      const table = getData(state.tables, data.tableId)
+      const column = getData(table.columns, data.columnId)
+      column.ui.dataTypes = getDataTypeSearch(data.key)
     },
     // table top, left 변경
     tableTracker(state, data) {

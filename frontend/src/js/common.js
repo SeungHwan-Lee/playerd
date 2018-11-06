@@ -1,4 +1,5 @@
-import storeERD from '../store/erd'
+import storeERD from '@/store/erd'
+import dataType from '@/store/dataType'
 
 // UUID 생성
 export const guid = () => {
@@ -18,40 +19,23 @@ export const getData = (list, id) => {
   }
 }
 
-// dataType 리스트 options 형태로 반환
-export const getDataTypeOptions = () => {
-  const dbType = storeERD.state.DBType
-  let dataTypes = []
-  for(let i in storeERD.state.DBTypes) {
-    if(dbType === storeERD.state.DBTypes[i].value) {
-      dataTypes = storeERD.state.DBTypes[i].dataTypes
-      break
-    }
-  }
-  const options = []
-  dataTypes.forEach(function(v){
-    options.push({
-      value: v.name,
-      text: v.name
-    })
-  })
-  return options
-}
-
 // option 검색
-export const getOptionSearch = key => {
-  const options = getDataTypeOptions()
-  for(let i in options) {
+export const getDataTypeSearch = key => {
+  JSLog(key)
+  const dbType = storeERD.state.DBType
+  const dataTypes = dataType[dbType].slice()
+
+  for(let i=0; i<dataTypes.length; i++) {
     let check = true
-    if(options[i].text.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+    if(dataTypes[i].name.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
       check = false
     }
     if(check) {
-      options.splice(i, 1)
+      dataTypes.splice(i, 1)
       i--
     }
   }
-  return options
+  return dataTypes
 }
 
 // max z-index 반환

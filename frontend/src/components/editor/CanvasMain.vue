@@ -28,9 +28,9 @@
 
             // 컬럼 데이터타입
             div
-              input(type="text" placeholder="dataType" v-model="column.dataType" @keydown="dataTypeHintVisible(table.id, column.id, true)")
+              input.data_type(type="text" placeholder="dataType" v-model="column.dataType" @keyup="dataTypeHintVisible($event, table.id, column.id, true)")
               ul.data_type_list(v-if="column.ui.isDataTypeHint")
-                li(v-for="dataTyp in column.ui.dataTypes") {{ dataTyp.name }}
+                li(v-for="dataType in column.ui.dataTypes" @click="changeColumnDataType($event, table.id, column.id, dataType.name)" @mouseover="dataTypeHintAddClass") {{ dataType.name }}
 
             // 컬럼 not-null
             input.erd_column_not_null(type="text" readonly value="NULL" @click="changeNull(table.id, column.id)" v-if="column.isNull")
@@ -115,13 +115,62 @@
         this.onlyTableSelected = false
       },
       // 데이터타입 힌트 show/hide
-      dataTypeHintVisible(tableId, columnId, isDataTypeHint) {
+      dataTypeHintVisible(e, tableId, columnId, isDataTypeHint) {
         storeERD.commit({
           type: 'dataTypeHintVisible',
           tableId: tableId,
           columnId: columnId,
           isDataTypeHint: isDataTypeHint
         })
+        // 힌트 포커스 이동
+        let $li = $(e.target).parent('div').find('li')
+        let index = $li.filter('.selected').index()
+        let len = $li.length
+        if(e.keyCode === 38) {
+          if(index === -1) {
+            $li.eq(len-1).addClass('selected')
+          }else {
+            $li.eq(index).removeClass('selected')
+            $li.eq(index-1).addClass('selected')
+          }
+        }else if(e.keyCode === 40) {
+          if(index === -1) {
+            $li.eq(0).addClass('selected')
+          }else {
+            $li.eq(index).removeClass('selected')
+            $li.eq(index+1 === len ? 0 : index+1).addClass('selected')
+          }
+        }else if(e.keyCode === 13) {
+          if(index !== -1) {
+            e.target.value = $li.filter('.selected').text()
+          }
+        }else {
+          // 데이터타입 검색 정렬
+          if(isDataTypeHint) {
+            storeERD.commit({
+              type: 'changeDataTypeHint',
+              tableId: tableId,
+              columnId: columnId,
+              key: e.target.value
+            })
+          }
+        }
+      },
+      // 데이터선택
+      changeColumnDataType(e, tableId, columnId, dataType) {
+        JSLog('changeColumnDataType', tableId, columnId, dataType)
+        storeERD.commit({
+          type: 'changeColumnDataType',
+          tableId: tableId,
+          columnId: columnId,
+          dataType: dataType
+        })
+        $(e.target).parents('div').find('.data_type').focus()
+      },
+      // 마우스 hover addClass
+      dataTypeHintAddClass(e) {
+        $(e.target).parent('ul').find('li').removeClass('selected')
+        $(e.target).addClass('selected')
       }
     },
     updated() {
@@ -213,7 +262,7 @@
           li {
             cursor: pointer;
 
-            &:hover {
+            &.selected {
               color: white;
               background-color: #383d41;
             }
