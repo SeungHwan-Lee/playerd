@@ -18,9 +18,9 @@ class ERD {
   // 종속성 초기화
   setInit(core) {
     JSLog('Class ERD Init')
-    Object.keys(this.core).forEach(function(v){
-      this[v].init(core)
-    }.bind(this.core))
+    Object.keys(core).forEach(function(v){
+      core[v].init(core)
+    })
   }
 
 }

@@ -44,9 +44,9 @@
             })
             break
           case 'erd-0-1-N':
-            if(ERD.core.event.isCursor) {
+            if (ERD.core.event.isCursor) {
               ERD.core.event.cursor()
-            }else {
+            } else {
               ERD.core.event.cursor(type)
             }
             break

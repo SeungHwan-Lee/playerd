@@ -5,6 +5,7 @@
 
 <script>
   import storeERD from '@/store/erd'
+  import {getLineXY} from '@/js/common'
 
   export default {
     name: "CanvasSvg",
@@ -17,13 +18,9 @@
       toLines() {
         const lines = []
         this.lines.forEach(v => {
-          const points = []
-          points.push(`M${v.points[0].x} ${v.points[0].y}`)
-          points.push(`Q ${(v.points[0].x + v.points[1].x) / 2} ${v.points[0].y}`)
-          points.push(`${v.points[1].x} ${v.points[1].y}`)
           lines.push({
             id: v.id,
-            points: points.join(' ')
+            points: getLineXY(v)
           })
         })
         return lines

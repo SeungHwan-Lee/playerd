@@ -14,7 +14,7 @@
         b-button(variant="outline-danger" @click="deleteTable(table.id)")
           font-awesome-icon(icon="times")
 
-      draggable(v-model="table.columns" :options="{group:'table'}")
+      draggable(v-model="table.columns" :options="{group:'table'}" @end="draggableEnd")
         transition-group(name="slide-fade" tag="div")
           // 컬럼
           .erd_column(v-for="column in table.columns" :key="column.id" :class="{ selected: column.ui.selected}" @mousedown="columnSelected(table.id, column.id)")
@@ -126,27 +126,32 @@
         let $li = $(e.target).parent('div').find('li')
         let index = $li.filter('.selected').index()
         let len = $li.length
-        if(e.keyCode === 38) {
-          if(index === -1) {
-            $li.eq(len-1).addClass('selected')
-          }else {
+        if (e.keyCode === 38) {
+          if (index === -1) {
+            $li.eq(len - 1).addClass('selected')
+          } else {
             $li.eq(index).removeClass('selected')
-            $li.eq(index-1).addClass('selected')
+            $li.eq(index - 1).addClass('selected')
           }
-        }else if(e.keyCode === 40) {
-          if(index === -1) {
+        } else if (e.keyCode === 40) {
+          if (index === -1) {
             $li.eq(0).addClass('selected')
-          }else {
+          } else {
             $li.eq(index).removeClass('selected')
-            $li.eq(index+1 === len ? 0 : index+1).addClass('selected')
+            $li.eq(index + 1 === len ? 0 : index + 1).addClass('selected')
           }
-        }else if(e.keyCode === 13) {
-          if(index !== -1) {
-            e.target.value = $li.filter('.selected').text()
+        } else if (e.keyCode === 13) {
+          if (index !== -1) {
+            storeERD.commit({
+              type: 'changeColumnDataType',
+              tableId: tableId,
+              columnId: columnId,
+              dataType: $li.filter('.selected').text()
+            })
           }
-        }else {
+        } else {
           // 데이터타입 검색 정렬
-          if(isDataTypeHint) {
+          if (isDataTypeHint) {
             storeERD.commit({
               type: 'changeDataTypeHint',
               tableId: tableId,
@@ -156,7 +161,7 @@
           }
         }
       },
-      // 데이터선택
+      // 데이터변경
       changeColumnDataType(e, tableId, columnId, dataType) {
         JSLog('changeColumnDataType', tableId, columnId, dataType)
         storeERD.commit({
@@ -171,6 +176,12 @@
       dataTypeHintAddClass(e) {
         $(e.target).parent('ul').find('li').removeClass('selected')
         $(e.target).addClass('selected')
+      },
+      // draggableEnd event
+      draggableEnd() {
+        storeERD.commit({
+          type: 'tableHeightReset'
+        })
       }
     },
     updated() {

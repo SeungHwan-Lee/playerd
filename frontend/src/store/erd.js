@@ -6,6 +6,10 @@ import ERD from '@/js/ERD'
 
 Vue.use(Vuex)
 
+const TABLE_WIDTH = 692
+const TABLE_HEIGHT = 88
+const COLUMN_HEIGHT = 25
+
 // ERD 데이터
 export default new Vuex.Store({
   state: {
@@ -23,8 +27,10 @@ export default new Vuex.Store({
         columns: [],
         ui: {
           selected: false,
-          top: document.documentElement.scrollTop+100,
-          left: document.documentElement.scrollLeft+200
+          top: document.documentElement.scrollTop + 100,
+          left: document.documentElement.scrollLeft + 200,
+          width: TABLE_WIDTH,
+          height: TABLE_HEIGHT
         }
       })
     },
@@ -37,7 +43,7 @@ export default new Vuex.Store({
         }
       }
       // line 삭제
-      for (let i=0; i<state.lines.length; i++) {
+      for (let i = 0; i < state.lines.length; i++) {
         let check = false
         for (let j in state.lines[i].points) {
           if (data.id === state.lines[i].points[j].id) {
@@ -45,7 +51,7 @@ export default new Vuex.Store({
             break
           }
         }
-        if(check) {
+        if (check) {
           this.commit({
             type: 'deleteLine',
             id: state.lines[i].id
@@ -56,9 +62,10 @@ export default new Vuex.Store({
     },
     // 컬럼 추가
     addColumn(state, data) {
-      for (let i in state.tables) {
-        if (data.id === state.tables[i].id) {
-          state.tables[i].columns.push({
+      for (let table of state.tables) {
+        if (data.id === table.id) {
+          table.ui.height += COLUMN_HEIGHT
+          table.columns.push({
             id: guid(),
             name: null,
             comment: null,
@@ -85,6 +92,7 @@ export default new Vuex.Store({
       for (let i in table.columns) {
         if (data.columnId === table.columns[i].id) {
           table.columns.splice(i, 1)
+          table.ui.height -= COLUMN_HEIGHT
           break
         }
       }
@@ -98,7 +106,17 @@ export default new Vuex.Store({
     // DB 변경
     changeDB(state, data) {
       state.DBType = data.DBType
-      setDataTypes(state, dataType[data.DBType])
+      for (let table of state.tables) {
+        for (let column of table.columns) {
+          column.ui.dataTypes = dataType[data.DBType]
+        }
+      }
+    },
+    // 테이블 높이 리셋
+    tableHeightReset(state) {
+      for (let table of state.tables) {
+        table.ui.height = table.columns.length * COLUMN_HEIGHT + TABLE_HEIGHT
+      }
     },
     // table 선택
     tableSelected(state, data) {
@@ -106,11 +124,11 @@ export default new Vuex.Store({
         v.ui.selected = data.id === v.id;
       })
       // column 선택 제거
-      if(data.onlyTableSelected) {
+      if (data.onlyTableSelected) {
         columnSelectedNone(state)
       }
       // line drawing 시작
-      if(ERD.core.event.isCursor && !ERD.core.event.isDraw) {
+      if (ERD.core.event.isCursor && !ERD.core.event.isDraw) {
         const table = getData(state.tables, data.id)
         const id = guid()
         state.lines.push({
@@ -130,10 +148,10 @@ export default new Vuex.Store({
         })
         ERD.core.event.startCursor(id)
 
-      // line drawing 종료
-      }else if(ERD.core.event.isDraw) {
+        // line drawing 종료
+      } else if (ERD.core.event.isDraw) {
         const line = getData(state.lines, ERD.core.event.lineId)
-        if(data.id !== line.points[0].id) {
+        if (data.id !== line.points[0].id) {
           ERD.core.event.endCursor(data.id)
         }
       }
@@ -143,7 +161,7 @@ export default new Vuex.Store({
       columnSelectedNone(state)
       const table = getData(state.tables, data.tableId)
       const column = getData(table.columns, data.columnId)
-      if(column) column.ui.selected = true
+      if (column) column.ui.selected = true
     },
     // column key active
     columnKey(state, data) {
@@ -153,7 +171,7 @@ export default new Vuex.Store({
           break
       }
     },
-    // 데이터선택
+    // 데이터변경
     changeColumnDataType(state, data) {
       const table = getData(state.tables, data.tableId)
       const column = getData(table.columns, data.columnId)
@@ -167,7 +185,11 @@ export default new Vuex.Store({
     },
     // 데이터타입 힌트 show/hide ALL
     dataTypeHintVisibleAll(state, data) {
-      setDataTypeHint(state, data.isDataTypeHint)
+      for (let table of state.tables) {
+        for (let column of table.columns) {
+          column.ui.isDataTypeHint = data.isDataTypeHint
+        }
+      }
     },
     // 데이터타입 검색
     changeDataTypeHint(state, data) {
@@ -183,7 +205,7 @@ export default new Vuex.Store({
       // line 업데이트
       state.lines.forEach(line => {
         line.points.forEach(v => {
-          if(v.id === data.id) {
+          if (v.id === data.id) {
             v.x = data.left
             v.y = data.top
           }
@@ -195,7 +217,7 @@ export default new Vuex.Store({
       const line = getData(state.lines, data.id)
       line.points[1].x = data.x
       line.points[1].y = data.y
-      if(data.tableId) line.points[1].id = data.tableId
+      if (data.tableId) line.points[1].id = data.tableId
     },
     // line 삭제
     deleteLine(state, data) {
@@ -220,35 +242,17 @@ function columnSelectedNone(state) {
 
 // column key active
 function setColumnKey(state, key) {
-  for(let table of state.tables) {
+  for (let table of state.tables) {
     let check = false
-    for(let column of table.columns) {
-      if(column.ui.selected) {
+    for (let column of table.columns) {
+      if (column.ui.selected) {
         column.ui.key[key] = !column.ui.key[key]
         check = true
         break
       }
     }
-    if(check) {
+    if (check) {
       break
-    }
-  }
-}
-
-// dataType 변경
-function setDataTypes(state, dataTypes) {
-  for(let table of state.tables) {
-    for(let column of table.columns) {
-      column.ui.dataTypes = dataTypes
-    }
-  }
-}
-
-// 데이터타입 힌트 show/hide ALL
-function setDataTypeHint(state, isDataTypeHint) {
-  for(let table of state.tables) {
-    for(let column of table.columns) {
-      column.ui.isDataTypeHint = isDataTypeHint
     }
   }
 }
