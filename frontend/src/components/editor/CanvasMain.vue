@@ -19,7 +19,7 @@
           // 컬럼
           .erd_column(v-for="column in table.columns" :key="column.id" :class="{ selected: column.ui.selected}" @mousedown="columnSelected(table.id, column.id)")
 
-            // key
+            // 컬럼 key
             .erd_column_key(:class="{ pk: column.ui.key.pk, fk: column.ui.key.fk, pfk: column.ui.key.pfk }")
               font-awesome-icon(icon="key")
 
@@ -28,8 +28,8 @@
 
             // 컬럼 데이터타입
             div
-              input.data_type(type="text" placeholder="dataType" v-model="column.dataType" @keyup="dataTypeHintVisible($event, table.id, column.id, true)")
-              ul.data_type_list(v-if="column.ui.isDataTypeHint")
+              input.erd_data_type(type="text" placeholder="dataType" v-model="column.dataType" @keyup="dataTypeHintVisible($event, table.id, column.id, true)")
+              ul.erd_data_type_list(v-if="column.ui.isDataTypeHint")
                 li(v-for="dataType in column.ui.dataTypes" @click="changeColumnDataType($event, table.id, column.id, dataType.name)" @mouseover="dataTypeHintAddClass") {{ dataType.name }}
 
             // 컬럼 not-null
@@ -126,6 +126,7 @@
         let $li = $(e.target).parent('div').find('li')
         let index = $li.filter('.selected').index()
         let len = $li.length
+        // key: Arrow up
         if (e.keyCode === 38) {
           if (index === -1) {
             $li.eq(len - 1).addClass('selected')
@@ -133,6 +134,7 @@
             $li.eq(index).removeClass('selected')
             $li.eq(index - 1).addClass('selected')
           }
+          // key: Arrow down
         } else if (e.keyCode === 40) {
           if (index === -1) {
             $li.eq(0).addClass('selected')
@@ -140,6 +142,7 @@
             $li.eq(index).removeClass('selected')
             $li.eq(index + 1 === len ? 0 : index + 1).addClass('selected')
           }
+          // key: Enter
         } else if (e.keyCode === 13) {
           if (index !== -1) {
             storeERD.commit({
@@ -170,7 +173,7 @@
           columnId: columnId,
           dataType: dataType
         })
-        $(e.target).parents('div').find('.data_type').focus()
+        $(e.target).parents('div').find('.erd_data_type').focus()
       },
       // 마우스 hover addClass
       dataTypeHintAddClass(e) {
@@ -203,12 +206,12 @@
 </script>
 
 <style lang="scss" scoped>
-  $tbg: #191919;
-  $ts: #14496d;
+  $table_background: #191919;
+  $table_selected: #14496d;
   /* column key color */
-  $key-pk: #666600;
-  $key-fk: #ff6680;
-  $key-pfk: #003366;
+  $key_pk: #666600;
+  $key_fk: #ff6680;
+  $key_pfk: #003366;
 
   #main_canvas {
     width: 5000px;
@@ -218,7 +221,7 @@
       width: 692px;
       position: absolute;
       box-sizing: border-box;
-      background-color: $tbg;
+      background-color: $table_background;
       opacity: 0.9;
       cursor: move;
       padding: 10px;
@@ -262,7 +265,7 @@
         }
 
         /* 데이터 타입 힌트 */
-        .data_type_list {
+        .erd_data_type_list {
           width: 168px;
           position: absolute;
           color: #a2a2a2;
@@ -283,16 +286,16 @@
         /* column key */
         .erd_column_key {
           width: 16px;
-          color: $tbg;
+          color: $table_background;
         }
         .pk {
-          color: $key-pk;
+          color: $key_pk;
         }
         .fk {
-          color: $key-fk;
+          color: $key_fk;
         }
         .pfk {
-          color: $key-pfk;
+          color: $key_pfk;
         }
 
         /* 컬럼 선택시 */
@@ -303,8 +306,8 @@
 
       /* 테이블 선택시 */
       &.selected {
-        border: solid $ts 1px;
-        box-shadow: 0 1px 6px $ts;
+        border: solid $table_selected 1px;
+        box-shadow: 0 1px 6px $table_selected;
       }
     }
   }
