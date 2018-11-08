@@ -9,9 +9,9 @@
       .erd_table_header
         input(type="text" placeholder="table" v-model="table.name")
         input(type="text" placeholder="comment" v-model="table.comment")
-        b-button(variant="outline-primary" @click="addColumn(table.id)")
+        button(class="btn btn-outline-primary" @click="addColumn(table.id)")
           font-awesome-icon(icon="plus")
-        b-button(variant="outline-danger" @click="deleteTable(table.id)")
+        button(class="btn btn-outline-danger" @click="deleteTable(table.id)")
           font-awesome-icon(icon="times")
 
       draggable(v-model="table.columns" :options="{group:'table'}" @end="draggableEnd")
@@ -40,7 +40,7 @@
             input(type="text" placeholder="comment" v-model="column.comment")
 
             // 컬럼 삭제 버튼
-            b-button(variant="outline-danger" @click="deleteColumn(table.id, column.id)")
+            button(class="btn" @click="deleteColumn(table.id, column.id)")
               font-awesome-icon(icon="times")
 </template>
 
@@ -262,6 +262,10 @@
           padding: 0;
           width: 25px;
           height: 25px;
+          border-radius: 50px;
+          color: #dc3545;
+          background-color: $table_background;
+          border-color: $table_background;
         }
 
         /* 데이터 타입 힌트 */

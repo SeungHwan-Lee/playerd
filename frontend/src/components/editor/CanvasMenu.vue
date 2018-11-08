@@ -3,7 +3,7 @@
     canvas#menu_canvas(@click="menu")
     select.dbType(@change="selectDB" v-if="menuCheck")
       option(v-for="DBType in DBTypes" :value="DBType") {{ DBType }}
-    b-button.addTable(@click="addTable" v-if="menuCheck")
+    button.addTable(class="btn btn-primary" @click="addTable" v-if="menuCheck")
       font-awesome-icon(icon="table")
 </template>
 
