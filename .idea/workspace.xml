@@ -2,38 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecd861a6-8a00-4d23-b570-87138a79920c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/handy/erd/ErdApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/handy/erd/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/handy/erd/controller/SystemController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/log4jdbc.log4j2.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/css/app.bf47b1d440745fb99e416afeabffa46a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/css/app.bf47b1d440745fb99e416afeabffa46a.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-0-1-N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-0-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-0-N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-1-N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-1-only.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/images/erd/erd-N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/app.83524cdee08f8bcaaf5c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/app.83524cdee08f8bcaaf5c.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/jquery-3.2.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/manifest.d821a5cbaede86c3c9b0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/manifest.d821a5cbaede86c3c9b0.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/three.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/vendor.50f8b56075217746fe42.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/static/js/vendor.50f8b56075217746fe42.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/handy/erd/ErdApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/js/THREE_menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/js/THREE_menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/js/common.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/backend/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,32 +35,20 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="erd: schema" type="c314c289:MysqlImplModel$Schema" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="519835183">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.23" value="1" />
+          <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.26" value="2" />
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.31" value="1" />
@@ -94,7 +56,7 @@
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -105,7 +67,7 @@
           <entry key="css" value="1" />
           <entry key="html" value="7" />
           <entry key="java" value="12" />
-          <entry key="js" value="16" />
+          <entry key="js" value="22" />
           <entry key="json" value="3" />
           <entry key="properties" value="6" />
           <entry key="sql" value="18" />
@@ -123,7 +85,7 @@
           <entry key="HTML" value="7" />
           <entry key="JAVA" value="12" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="16" />
+          <entry key="JavaScript" value="22" />
           <entry key="Properties" value="6" />
           <entry key="SQL" value="11" />
           <entry key="Scratch" value="7" />
@@ -137,7 +99,7 @@
         <counts>
           <entry key="html" value="3" />
           <entry key="java" value="293" />
-          <entry key="js" value="902" />
+          <entry key="js" value="1822" />
           <entry key="json" value="2" />
           <entry key="properties" value="10" />
           <entry key="sql" value="221" />
@@ -152,7 +114,7 @@
           <entry key="HTML" value="3" />
           <entry key="JAVA" value="293" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="902" />
+          <entry key="JavaScript" value="1822" />
           <entry key="PLAIN_TEXT" value="16" />
           <entry key="Properties" value="10" />
           <entry key="SQL" value="102" />
@@ -166,7 +128,7 @@
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="7" />
+          <entry key="ESLintLanguageService" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -177,22 +139,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/CanvasSvg.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+            <state relative-caret-position="23">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
               <folding>
                 <element signature="e#197#231#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/js/common.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1058">
-              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -231,7 +181,6 @@
       <list>
         <option value="$PROJECT_DIR$/backend/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/frontend/src/components/editor/CanvasSvg.vue" />
-        <option value="$PROJECT_DIR$/frontend/src/js/common.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/editor/TableMenu.vue" />
         <option value="$PROJECT_DIR$/frontend/package.json" />
         <option value="$PROJECT_DIR$/frontend/src/App.vue" />
@@ -253,6 +202,8 @@
         <option value="$PROJECT_DIR$/backend/src/main/resources/data-h2.sql" />
         <option value="$PROJECT_DIR$/backend/pom.xml" />
         <option value="$PROJECT_DIR$/backend/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/frontend/src/js/THREE_menu.js" />
+        <option value="$PROJECT_DIR$/frontend/src/js/common.js" />
       </list>
     </option>
   </component>
@@ -268,6 +219,12 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/frontend/node_modules" />
@@ -288,8 +245,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -297,10 +252,23 @@
               <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
               <item name="playerd" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="playerd" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="playerd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="playerd" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -321,7 +289,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="com.github.izhangzhihao.rainbow.brackets.settings.RainbowConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -344,31 +312,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.backend">
-    <configuration name="ErdApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.handy.erd.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.handy.erd" />
-      <option name="MAIN_CLASS_NAME" value="com.handy.erd.ErdApplicationTests" />
-      <option name="METHOD_NAME" value="contextLoads" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="backend" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="backend" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.handy.erd.ErdApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="frontend" type="js.build_tools.npm" factoryName="npm">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
@@ -379,16 +323,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="npm.frontend" />
-      <item itemvalue="Spring Boot.backend" />
-      <item itemvalue="JUnit.ErdApplicationTests.contextLoads" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.ErdApplicationTests.contextLoads" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -409,7 +343,11 @@
       <workItem from="1541845736668" duration="5582000" />
       <workItem from="1542009791582" duration="87000" />
       <workItem from="1542009976523" duration="68000" />
-      <workItem from="1542802720284" duration="264000" />
+      <workItem from="1542802720284" duration="357000" />
+      <workItem from="1542803133346" duration="70000" />
+      <workItem from="1542803253297" duration="66000" />
+      <workItem from="1542976626454" duration="50000" />
+      <workItem from="1543573298749" duration="7612000" />
     </task>
     <servers />
   </component>
@@ -419,13 +357,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33628000" />
+    <option name="totallyTimeSpent" value="41519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15884861" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1652452" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -436,7 +374,7 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27012128" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27012128" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -447,7 +385,7 @@
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="bottom" id="Problems" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="bottom" id="Database Console" order="15" weight="0.3296582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -455,7 +393,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.32995737" />
       <window_info anchor="right" id="SciView" order="6" />
       <window_info anchor="right" id="Database" order="7" weight="0.21108742" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
@@ -469,6 +407,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/backend/src/main/resources/application.properties" />
@@ -493,11 +435,6 @@
         <state relative-caret-position="182">
           <caret line="84" column="37" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="37" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/js/JSLog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/TableMenu.vue">
@@ -566,13 +503,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/handy/erd/package-info.java" />
-    <entry file="file://$PROJECT_DIR$/frontend/src/store/erd.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/handy/erd/ErdApplication.java" />
     <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/CanvasMain.vue">
       <provider selected="true" editor-type-id="text-editor">
@@ -604,27 +534,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://65143e17-2d8f-4ec8-bb82-75edeed50440/database/3000/schema/INFORMATION_SCHEMA/table/USERS.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://65143e17-2d8f-4ec8-bb82-75edeed50440/database/3000/schema/INFORMATION_SCHEMA/table/TABLES">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://65143e17-2d8f-4ec8-bb82-75edeed50440/database/3000/schema/INFORMATION_SCHEMA/table/USERS">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://65143e17-2d8f-4ec8-bb82-75edeed50440/database/3000/schema/INFORMATION_SCHEMA/table/USERS.sql" />
+    <entry file="das://65143e17-2d8f-4ec8-bb82-75edeed50440/database/3000/schema/INFORMATION_SCHEMA/table/TABLES" />
+    <entry file="das://65143e17-2d8f-4ec8-bb82-75edeed50440/database/3000/schema/INFORMATION_SCHEMA/table/USERS" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/65143e17-2d8f-4ec8-bb82-75edeed50440/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -637,22 +549,43 @@
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/handy/erd/config/SecurityConfig.java" />
     <entry file="file://$PROJECT_DIR$/backend/pom.xml" />
     <entry file="file://$PROJECT_DIR$/backend/src/main/resources/application.yml" />
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/CanvasSvg.vue">
+    <entry file="file://$PROJECT_DIR$/frontend/src/js/JSLog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-          <folding>
-            <element signature="e#197#231#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="184">
+          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/store/erd.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2668">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/js/THREE_menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="989">
+          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1058">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="181">
+          <caret line="133" column="19" selection-start-line="133" selection-start-column="19" selection-end-line="133" selection-end-column="19" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/editor/CanvasSvg.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <element signature="e#197#231#0" expanded="true" />
           </folding>
         </state>
       </provider>

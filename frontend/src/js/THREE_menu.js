@@ -1,5 +1,6 @@
 let camera, scene, renderer
 let geometry, material, mesh, light, light1
+let isAnimate = true
 
 function init() {
   //RENDERER
@@ -37,9 +38,10 @@ function animate() {
   mesh.rotation.y += 0.02
 
   renderer.render(scene, camera)
+  isAnimate = false
 }
 
 export default () => {
   init()
-  animate()
+  if (isAnimate) animate()
 }

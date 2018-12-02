@@ -65,25 +65,80 @@ export const setDataTypeHint = function (e) {
   }
 }
 
+// 좌표 데이터 정제
+function getPoints(ui) {
+  return {
+    top: {
+      x: ui.left + (ui.width / 2),
+      y: ui.top
+    },
+    bottom: {
+      x: ui.left + (ui.width / 2),
+      y: ui.top + ui.height
+    },
+    left: {
+      x: ui.left,
+      y: ui.top + (ui.height / 2)
+    },
+    right: {
+      x: ui.left + ui.width,
+      y: ui.top + (ui.height / 2)
+    }
+  }
+}
+
 // 테이블 선좌표 최적화
 export const getLineXY = v => {
-
   const startTable = getData(storeERD.state.tables, v.points[0].id)
   const endTable = getData(storeERD.state.tables, v.points[1].id)
+
+  let startKey = 'left'
+  const startUI = getPoints(startTable.ui)
   if (endTable) {
-    JSLog('to', startTable.ui, endTable.ui)
+    const endUI = getPoints(endTable.ui)
+    let minXY = Math.abs(startUI.left.x - endUI.left.x) + Math.abs(startUI.left.y - endUI.left.y)
+    v.points[0].x = startUI.left.x
+    v.points[0].y = startUI.left.y
+    v.points[1].x = endUI.left.x
+    v.points[1].y = endUI.left.y
+
+    Object.keys(startUI).forEach(function (key) {
+      Object.keys(endUI).forEach(function (key2) {
+        let tempXY = Math.abs(startUI[key].x - endUI[key2].x) + Math.abs(startUI[key].y - endUI[key2].y)
+        if(minXY > tempXY) {
+          minXY = tempXY
+          startKey = key
+          v.points[0].x = startUI[key].x
+          v.points[0].y = startUI[key].y
+          v.points[1].x = endUI[key2].x
+          v.points[1].y = endUI[key2].y
+        }
+      })
+    })
   } else {
-    JSLog('to', startTable.ui)
+    let minXY = Math.abs(startUI.left.x - v.points[1].x) + Math.abs(startUI.left.y - v.points[1].y)
+    v.points[0].x = startUI.left.x
+    v.points[0].y = startUI.left.y
+
+    Object.keys(startUI).forEach(function (key) {
+      let tempXY = Math.abs(startUI[key].x - v.points[1].x) + Math.abs(startUI[key].y - v.points[1].y)
+      if (minXY > tempXY) {
+        minXY = tempXY
+        startKey = key
+        v.points[0].x = startUI[key].x
+        v.points[0].y = startUI[key].y
+      }
+    })
   }
 
   const points = []
-
   points.push(`M${v.points[0].x} ${v.points[0].y}`)
-
-  points.push(`Q ${(v.points[0].x + v.points[1].x) / 2} ${v.points[0].y}`)
-
+  if(startKey === 'left' || startKey === 'right') {
+    points.push(`Q ${(v.points[0].x + v.points[1].x) / 2} ${v.points[0].y}`)
+  }else {
+    points.push(`Q ${v.points[0].x} ${(v.points[0].y + v.points[1].y) / 2}`)
+  }
   points.push(`${v.points[1].x} ${v.points[1].y}`)
-
   return points.join(' ')
 }
 
