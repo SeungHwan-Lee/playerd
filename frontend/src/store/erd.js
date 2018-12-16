@@ -133,6 +133,7 @@ export default new Vuex.Store({
         const id = guid()
         state.lines.push({
           id: id,
+          type: ERD.core.event.type,
           points: [
             {
               id: data.id,

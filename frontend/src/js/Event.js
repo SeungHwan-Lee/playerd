@@ -14,6 +14,7 @@ class Event {
     this.isDraw = false
     this.eventTarget = null
     this.lineId = null
+    this.type = null
 
     this.setEvent()
   }
@@ -70,9 +71,11 @@ class Event {
     if (type) {
       $('body').css('cursor', `url("/static/images/erd/${type}.png") 16 16, auto`)
       this.isCursor = true
+      this.type = type
     } else {
       $('body').removeAttr('style')
       this.isCursor = false
+      this.type = null
       if (this.isDraw) {
         this.endCursor()
       }

@@ -65,8 +65,28 @@ export const setDataTypeHint = function (e) {
   }
 }
 
+
+// line convert
+export const convertLine = v => {
+  // start,end key 및 points data convert
+  const key = convertPoints(v)
+  // path data
+  const path = getPath(v, key)
+  // line data
+  const line = getLine(v, key)
+
+  return {
+    id: v.id,
+    type: v.type,
+    path: path,
+    line: line.line,
+    circle: line.circle,
+    isDraw: key.end != null
+  }
+}
+
 // 좌표 데이터 정제
-function getPoints(ui) {
+function getPoint(ui) {
   return {
     top: {
       x: ui.left + (ui.width / 2),
@@ -87,59 +107,204 @@ function getPoints(ui) {
   }
 }
 
-// 테이블 선좌표 최적화
-export const getLineXY = v => {
+// convert points
+function convertPoints(v) {
   const startTable = getData(storeERD.state.tables, v.points[0].id)
   const endTable = getData(storeERD.state.tables, v.points[1].id)
+  const key = {
+    start: 'left',
+    end: null
+  }
+  const startPoint = getPoint(startTable.ui)
 
-  let startKey = 'left'
-  const startUI = getPoints(startTable.ui)
+  // 연결좌표 처리
   if (endTable) {
-    const endUI = getPoints(endTable.ui)
-    let minXY = Math.abs(startUI.left.x - endUI.left.x) + Math.abs(startUI.left.y - endUI.left.y)
-    v.points[0].x = startUI.left.x
-    v.points[0].y = startUI.left.y
-    v.points[1].x = endUI.left.x
-    v.points[1].y = endUI.left.y
+    const endPoint = getPoint(endTable.ui)
+    let minXY = Math.abs(startPoint.left.x - endPoint.left.x) + Math.abs(startPoint.left.y - endPoint.left.y)
+    v.points[0].x = startPoint.left.x
+    v.points[0].y = startPoint.left.y
+    v.points[1].x = endPoint.left.x
+    v.points[1].y = endPoint.left.y
 
-    Object.keys(startUI).forEach(function (key) {
-      Object.keys(endUI).forEach(function (key2) {
-        let tempXY = Math.abs(startUI[key].x - endUI[key2].x) + Math.abs(startUI[key].y - endUI[key2].y)
-        if(minXY > tempXY) {
+    Object.keys(startPoint).forEach(function (k) {
+      Object.keys(endPoint).forEach(function (k2) {
+        let tempXY = Math.abs(startPoint[k].x - endPoint[k2].x) + Math.abs(startPoint[k].y - endPoint[k2].y)
+        if (minXY > tempXY) {
           minXY = tempXY
-          startKey = key
-          v.points[0].x = startUI[key].x
-          v.points[0].y = startUI[key].y
-          v.points[1].x = endUI[key2].x
-          v.points[1].y = endUI[key2].y
+          key.start = k
+          key.end = k2
+          v.points[0].x = startPoint[k].x
+          v.points[0].y = startPoint[k].y
+          v.points[1].x = endPoint[k2].x
+          v.points[1].y = endPoint[k2].y
         }
       })
     })
   } else {
-    let minXY = Math.abs(startUI.left.x - v.points[1].x) + Math.abs(startUI.left.y - v.points[1].y)
-    v.points[0].x = startUI.left.x
-    v.points[0].y = startUI.left.y
+    let minXY = Math.abs(startPoint.left.x - v.points[1].x) + Math.abs(startPoint.left.y - v.points[1].y)
+    v.points[0].x = startPoint.left.x
+    v.points[0].y = startPoint.left.y
 
-    Object.keys(startUI).forEach(function (key) {
-      let tempXY = Math.abs(startUI[key].x - v.points[1].x) + Math.abs(startUI[key].y - v.points[1].y)
+    Object.keys(startPoint).forEach(function (k) {
+      let tempXY = Math.abs(startPoint[k].x - v.points[1].x) + Math.abs(startPoint[k].y - v.points[1].y)
       if (minXY > tempXY) {
         minXY = tempXY
-        startKey = key
-        v.points[0].x = startUI[key].x
-        v.points[0].y = startUI[key].y
+        key.start = k
+        v.points[0].x = startPoint[k].x
+        v.points[0].y = startPoint[k].y
       }
     })
   }
 
-  const points = []
-  points.push(`M${v.points[0].x} ${v.points[0].y}`)
-  if(startKey === 'left' || startKey === 'right') {
-    points.push(`Q ${(v.points[0].x + v.points[1].x) / 2} ${v.points[0].y}`)
-  }else {
-    points.push(`Q ${v.points[0].x} ${(v.points[0].y + v.points[1].y) / 2}`)
+  return key
+}
+
+// path data
+const PATH_HEIGHT = 40
+const PATH_END_HEIGHT = PATH_HEIGHT + 20
+const PATH_LINE_HEIGHT = 35
+function getPath(v, key) {
+  const line = {
+    start: {
+      x1: v.points[0].x,
+      y1: v.points[0].y,
+      x2: v.points[0].x,
+      y2: v.points[0].y
+    },
+    end: {
+      x1: v.points[1].x,
+      y1: v.points[1].y,
+      x2: v.points[1].x,
+      y2: v.points[1].y
+    }
   }
-  points.push(`${v.points[1].x} ${v.points[1].y}`)
-  return points.join(' ')
+  const path = []
+  let change = 1
+
+  if (key.start === 'left' || key.start === 'right') {
+    if (key.start === 'left') change *= -1
+    line.start.x2 = v.points[0].x + (change * PATH_HEIGHT)
+    path.push(`M${line.start.x2} ${v.points[0].y}`)
+  } else if (key.start === 'top' || key.start === 'bottom') {
+    if (key.start === 'top') change *= -1
+    line.start.y2 = v.points[0].y + (change * PATH_HEIGHT)
+    path.push(`M${v.points[0].x} ${line.start.y2}`)
+  }
+
+  if (key.start === 'left' || key.start === 'right') {
+    path.push(`Q ${(v.points[0].x + v.points[1].x) / 2} ${v.points[0].y}`)
+  } else {
+    path.push(`Q ${v.points[0].x} ${(v.points[0].y + v.points[1].y) / 2}`)
+  }
+
+  if (key.end) {
+    change = 1
+    if (key.end === 'left' || key.end === 'right') {
+      if (key.end === 'left') change *= -1
+      line.end.x2 = v.points[1].x + (change * PATH_END_HEIGHT)
+      line.end.x1 += (change * PATH_LINE_HEIGHT)
+      path.push(`${line.end.x2} ${v.points[1].y}`)
+    } else if (key.end === 'top' || key.end === 'bottom') {
+      if (key.end === 'top') change *= -1
+      line.end.y2 = v.points[1].y + (change * PATH_END_HEIGHT)
+      line.end.y1 += (change * PATH_LINE_HEIGHT)
+      path.push(`${v.points[1].x} ${line.end.y2}`)
+    }
+  } else {
+    path.push(`${v.points[1].x} ${v.points[1].y}`)
+  }
+
+  return {
+    path: path.join(' '),
+    line: line
+  }
+}
+
+// line data
+const LINE_SIZE = 10
+const LINE_HEIGHT = 15
+const CIRCLE_HEIGHT = 26
+function getLine(v, key) {
+  const line = {
+    start: {
+      x1: v.points[0].x,
+      y1: v.points[0].y,
+      x2: v.points[0].x,
+      y2: v.points[0].y
+    },
+    end: {
+      base: {
+        x1: v.points[1].x,
+        y1: v.points[1].y,
+        x2: v.points[1].x,
+        y2: v.points[1].y
+      },
+      left: {
+        x1: v.points[1].x,
+        y1: v.points[1].y,
+        x2: v.points[1].x,
+        y2: v.points[1].y
+      },
+      center: {
+        x1: v.points[1].x,
+        y1: v.points[1].y,
+        x2: v.points[1].x,
+        y2: v.points[1].y
+      },
+      right: {
+        x1: v.points[1].x,
+        y1: v.points[1].y,
+        x2: v.points[1].x,
+        y2: v.points[1].y
+      }
+    }
+  }
+  let change = 1
+
+  if (key.start === 'left' || key.start === 'right') {
+    if (key.start === 'left') change *= -1
+    line.start.x1 = line.start.x2 += (change * LINE_HEIGHT)
+    line.start.y1 -= LINE_SIZE
+    line.start.y2 += LINE_SIZE
+  } else if (key.start === 'top' || key.start === 'bottom') {
+    if (key.start === 'top') change *= -1
+    line.start.y1 = line.start.y2 += (change * LINE_HEIGHT)
+    line.start.x1 -= LINE_SIZE
+    line.start.x2 += LINE_SIZE
+  }
+
+  const circle = {
+    cx: v.points[1].x,
+    cy: v.points[1].y
+  }
+
+  if (key.end) {
+    change = 1
+    if (key.end === 'left' || key.end === 'right') {
+      if (key.end === 'left') change *= -1
+      line.end.left.x1 = line.end.center.x1 = line.end.right.x1 = line.end.base.x1 = line.end.base.x2 += (change * LINE_HEIGHT)
+      line.end.base.y1 -= LINE_SIZE
+      line.end.base.y2 += LINE_SIZE
+      line.end.left.y2 += LINE_SIZE
+      line.end.right.y2 -= LINE_SIZE
+
+      circle.cx += (change * CIRCLE_HEIGHT)
+    } else if (key.end === 'top' || key.end === 'bottom') {
+      if (key.end === 'top') change *= -1
+      line.end.left.y1 = line.end.center.y1 = line.end.right.y1 = line.end.base.y1 = line.end.base.y2 += (change * LINE_HEIGHT)
+      line.end.base.x1 -= LINE_SIZE
+      line.end.base.x2 += LINE_SIZE
+      line.end.left.x2 += LINE_SIZE
+      line.end.right.x2 -= LINE_SIZE
+
+      circle.cy += (change * CIRCLE_HEIGHT)
+    }
+  }
+
+  return {
+    line: line,
+    circle: circle
+  }
 }
 
 //==================== ERD END ====================
