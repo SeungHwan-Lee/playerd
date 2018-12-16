@@ -25,9 +25,15 @@
             keymap: ''
           },
           {
+            type: 'erd-0-1',
+            icon: '/static/images/erd/erd-0-1.png',
+            name: '1:1',
+            keymap: ''
+          },
+          {
             type: 'erd-0-1-N',
             icon: '/static/images/erd/erd-0-1-N.png',
-            name: '비식별관계',
+            name: '1:N',
             keymap: ''
           }
         ]
@@ -44,6 +50,13 @@
             })
             break
           case 'erd-0-1-N':
+            if (ERD.core.event.isCursor) {
+              ERD.core.event.cursor()
+            } else {
+              ERD.core.event.cursor(type)
+            }
+            break
+          case 'erd-0-1':
             if (ERD.core.event.isCursor) {
               ERD.core.event.cursor()
             } else {

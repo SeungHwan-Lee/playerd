@@ -134,6 +134,7 @@ export default new Vuex.Store({
         state.lines.push({
           id: id,
           type: ERD.core.event.type,
+          isIdentification: false,
           points: [
             {
               id: data.id,

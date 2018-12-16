@@ -78,6 +78,7 @@ export const convertLine = v => {
   return {
     id: v.id,
     type: v.type,
+    isIdentification: v.isIdentification,
     path: path,
     line: line.line,
     circle: line.circle,
