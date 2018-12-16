@@ -9,9 +9,9 @@
 </template>
 
 <script>
-  import ERD from '@/js/ERD'
-  import storeERD from '@/store/erd'
-  import {getZIndex} from '@/js/common'
+  import ERD from '@/js/editor/ERD'
+  import storeERD from '@/store/editor/erd'
+  import {getZIndex} from '@/js/editor/common'
 
   export default {
     name: 'TableMenu',

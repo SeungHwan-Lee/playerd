@@ -45,9 +45,9 @@
 </template>
 
 <script>
-  import storeERD from '@/store/erd'
+  import storeERD from '@/store/editor/erd'
   import draggable from 'vuedraggable'
-  import {setZIndex, setDataTypeHint} from '@/js/common'
+  import {setZIndex, setDataTypeHint} from '@/js/editor/common'
 
   export default {
     name: 'CanvasMain',

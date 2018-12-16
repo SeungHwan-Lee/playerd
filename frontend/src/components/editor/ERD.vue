@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import '@/js/ERD'
+  import '@/js/editor/ERD'
   import TableMenu from './TableMenu'
   import CanvasMenu from './CanvasMenu'
   import CanvasMain from './CanvasMain'

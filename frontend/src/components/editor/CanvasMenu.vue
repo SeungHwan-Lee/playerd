@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import storeERD from '@/store/erd'
-  import menu from '@/js/THREE_menu'
+  import storeERD from '@/store/editor/erd'
+  import menu from '@/js/editor/THREE_menu'
 
   export default {
     name: 'CanvasMenu',

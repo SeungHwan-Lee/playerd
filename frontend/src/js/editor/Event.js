@@ -1,5 +1,5 @@
-import storeERD from '@/store/erd'
-import {getData} from '@/js/common'
+import storeERD from '@/store/editor/erd'
+import {getData} from '@/js/editor/common'
 
 /**
  * 이벤트 클래스

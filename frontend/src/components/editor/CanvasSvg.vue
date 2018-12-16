@@ -1,7 +1,6 @@
 <template lang="pug">
   svg#svg_canvas
     g(v-for="data in toLines" :key="data.id")
-      // erd-0-1-N
       // start draw
       line(:x1="data.path.line.start.x1" :y1="data.path.line.start.y1" :x2="data.path.line.start.x2" :y2="data.path.line.start.y2" :stroke="data.isIdentification ? '#60b9c4' : '#dda8b1'" stroke-width="3")
       path(:d="data.path.path" :stroke="data.isIdentification ? '#60b9c4' : '#dda8b1'" :stroke-dasharray="data.isIdentification ? 0 : 10" stroke-width="3" fill="transparent")
@@ -13,12 +12,11 @@
       line(v-if="data.isDraw && data.type === 'erd-0-1-N'" :x1="data.line.end.left.x1" :y1="data.line.end.left.y1" :x2="data.line.end.left.x2" :y2="data.line.end.left.y2" :stroke="data.isIdentification ? '#60b9c4' : '#dda8b1'" stroke-width="3")
       line(v-if="data.isDraw" :x1="data.line.end.center.x1" :y1="data.line.end.center.y1" :x2="data.line.end.center.x2" :y2="data.line.end.center.y2" :stroke="data.isIdentification ? '#60b9c4' : '#dda8b1'" stroke-width="3")
       line(v-if="data.isDraw && data.type === 'erd-0-1-N'" :x1="data.line.end.right.x1" :y1="data.line.end.right.y1" :x2="data.line.end.right.x2" :y2="data.line.end.right.y2" :stroke="data.isIdentification ? '#60b9c4' : '#dda8b1'" stroke-width="3")
-      // erd-0-1-N END
 </template>
 
 <script>
-  import storeERD from '@/store/erd'
-  import {convertLine} from '@/js/common'
+  import storeERD from '@/store/editor/erd'
+  import {convertLine} from '@/js/editor/common'
 
   export default {
     name: "CanvasSvg",

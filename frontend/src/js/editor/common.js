@@ -1,5 +1,5 @@
-import storeERD from '@/store/erd'
-import dataType from '@/store/dataType'
+import storeERD from '@/store/editor/erd'
+import dataType from '@/store/editor/dataType'
 
 // UUID 생성
 export const guid = () => {
@@ -10,7 +10,6 @@ export const guid = () => {
   return [s4(), s4(), '-', s4(), '-', s4(), '-', s4(), '-', s4(), s4(), s4()].join('')
 }
 
-//==================== ERD ====================
 // id -> data 반환
 export const getData = (list, id) => {
   for (let v of list) {
@@ -307,5 +306,3 @@ function getLine(v, key) {
     circle: circle
   }
 }
-
-//==================== ERD END ====================
